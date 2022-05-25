@@ -582,10 +582,11 @@ class Game {
         );
     }
     update(delta) {
-    // this.finnIdle.update(delta)
-    // this.finnRun.update(delta)
-    // this.finnDamage.update(delta)
-    // this.finnAttack.update(delta)
+        // this.finnIdle.update(delta)
+        // this.finnRun.update(delta)
+        // this.finnDamage.update(delta)
+        // this.finnAttack.update(delta)
+        this.finnTheHuman.update(delta);
     }
     createFinnFrames() {
         // create an array of textures from an image path
@@ -37214,9 +37215,10 @@ parcelHelpers.export(exports, "FinnTheHuman", ()=>FinnTheHuman
 );
 var _pixiJs = require("pixi.js");
 class FinnTheHuman extends _pixiJs.AnimatedSprite {
-    speedX = 1;
-    speedY = 5;
+    speedX = 0;
+    // private speedY: number = 0
     frames = [];
+    previousFrame = -1;
     constructor(game, textures, x, y){
         super(textures[0]);
         this.game = game;
@@ -37224,36 +37226,94 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
         /*
          * An AnimatedSprite inherits all the properties of a PIXI sprite
          * so you can change its position, its anchor, mask it, etc
-         */ this.x = 400;
+         */ this.x = x;
         this.y = 650;
-        this.scale.set(5);
+        this.scale.set(4);
         this.animationSpeed = 0.05;
         this.loop = true;
-        this.anchor.set(1);
+        this.anchor.set(0.5);
         this.play();
         this.game.pixi.stage.addChild(this);
-    // this.onComplete = () => this.destroy()
+        // this.onComplete = () => this.destroy()
+        window.addEventListener("keydown", (e)=>this.onKeyDown(e)
+        );
+        window.addEventListener("keyup", (e)=>this.onKeyUp(e)
+        );
     }
     update(delta) {
         super.update(delta);
-        // this.fall(delta)
-        this.keepInScreen();
+        this.x += this.speedX * delta;
+    // this.fall(delta)
+    // this.keepInScreen()
     }
     // private fall(delta): void {
     //     this.x += this.speedX * delta
     //     this.y += this.speedY * delta
     //     this.speedY += this.gravity
     // }
-    keepInScreen() {
-        if (this.getBounds().left < 0) {
-            this.speedX *= -1;
-            this.x = this.game.pixi.screen.left;
+    // private keepInScreen() {
+    //     if (this.getBounds().left < 0) {
+    //         this.speedX *= -1
+    //         this.x = this.game.pixi.screen.left
+    //     }
+    //     if (this.getBounds().right > this.game.pixi.screen.right) {
+    //         this.speedX *= -1
+    //         this.x = this.game.pixi.screen.right - this.width
+    //     }
+    //     if (this.getBounds().bottom > this.game.pixi.screen.bottom) {
+    //         this.y =this.game.pixi.screen.bottom - this.height
+    //     }
+    // }
+    onKeyDown(e) {
+        switch(e.key.toUpperCase()){
+            case "A":
+            case "ARROWLEFT":
+                this.speedX = -3;
+                this.scale.set(-4, 4);
+                this.setFrames(1);
+                break;
+            case "D":
+            case "ARROWRIGHT":
+                this.speedX = 3;
+                this.scale.set(4);
+                this.setFrames(1);
+                break;
+            case "Q":
+                this.scale.set(4);
+                this.setFrames(3);
         }
-        if (this.getBounds().right > this.game.pixi.screen.right) {
-            this.speedX *= -1;
-            this.x = this.game.pixi.screen.right - this.width;
+    }
+    onKeyUp(e) {
+        switch(e.key.toUpperCase()){
+            case " ":
+                break;
+            case "A":
+            case "D":
+            case "Q":
+            case "ARROWLEFT":
+            case "ARROWRIGHT":
+                this.speedX = 0;
+                this.setFrames(0);
+                break;
         }
-        if (this.getBounds().bottom > this.game.pixi.screen.bottom) this.y = this.game.pixi.screen.bottom - this.height;
+    }
+    setFrames(frame) {
+        if (this.previousFrame != frame) {
+            console.log("set frames");
+            this.textures = this.frames[frame];
+            this.loop = true;
+            this.play();
+            this.previousFrame = frame;
+        }
+    }
+    onButtonDown() {
+        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
+        this.setFrames(3);
+        console.log("working");
+    }
+    onButtonUp() {
+        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
+        this.setFrames(0);
     }
 }
 

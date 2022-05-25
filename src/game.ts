@@ -69,6 +69,7 @@ export class Game {
         // this.finnRun.update(delta)
         // this.finnDamage.update(delta)
         // this.finnAttack.update(delta)
+        this.finnTheHuman.update(delta)
     }
 
     private createFinnFrames(): PIXI.Texture[][] {

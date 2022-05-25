@@ -1,0 +1,84 @@
+{"frames": {
+
+"finn_1.png" :{
+	"filename": "FinnSprite.png",
+	"frame": {"x":0,"y":0,"w":16,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":20},
+	"sourceSize": {"w":16,"h":20}
+},
+"finn_2.png":{
+	"filename": "FinnSprite1.png",
+	"frame": {"x":0,"y":20,"w":16,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":18},
+	"sourceSize": {"w":16,"h":18}
+},
+"finn_3.png":{
+	"filename": "FinnSprite2.png",
+	"frame": {"x":0,"y":38,"w":15,"h":19},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":19},
+	"sourceSize": {"w":15,"h":19}
+},
+"finn_4.png":{
+	"filename": "FinnSprite3.png",
+	"frame": {"x":0,"y":57,"w":15,"h":19},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":19},
+	"sourceSize": {"w":15,"h":19}
+},
+"finn_5.png":{
+	"filename": "FinnSprite4.png",
+	"frame": {"x":0,"y":76,"w":15,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":17},
+	"sourceSize": {"w":15,"h":17}
+},
+"finn_6.png":{
+	"filename": "FinnSprite5.png",
+	"frame": {"x":0,"y":93,"w":16,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":18},
+	"sourceSize": {"w":16,"h":18}
+},
+"finn_7.png":{
+	"filename": "FinnSprite6.png",
+	"frame": {"x":0,"y":111,"w":15,"h":19},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":19},
+	"sourceSize": {"w":15,"h":19}
+},
+"finn_8.png":{
+	"filename": "FinnSprite7.png",
+	"frame": {"x":0,"y":130,"w":15,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":17},
+	"sourceSize": {"w":15,"h":17}
+},
+"finn_9.png":{
+	"filename": "FinnSprite8.png",
+	"frame": {"x":0,"y":147,"w":16,"h":19},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":19},
+	"sourceSize": {"w":16,"h":19}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "finn_idle.png",
+	"format": "RGBA8888",
+	"size": {"w":16,"h":166},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3eb5e08e97c8950ad393d6218cc19016:f0cde9310befd4f15f0de74f1a441634:e64f997ef1aaac9d05861f06357ddff6$"
+}
+}

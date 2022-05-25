@@ -1,0 +1,84 @@
+{"frames": {
+
+"FinnIdle1.png":
+{
+	"frame": {"x":0,"y":0,"w":17,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":17,"h":32},
+	"sourceSize": {"w":17,"h":32}
+},
+"FinnIdle2.png":
+{
+	"frame": {"x":17,"y":0,"w":16,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":32},
+	"sourceSize": {"w":16,"h":32}
+},
+"FinnIdle3.png":
+{
+	"frame": {"x":33,"y":0,"w":17,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":17,"h":32},
+	"sourceSize": {"w":17,"h":32}
+},
+"FinnIdle4.png":
+{
+	"frame": {"x":50,"y":0,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"FinnIdle5.png":
+{
+	"frame": {"x":68,"y":0,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"FinnIdle6.png":
+{
+	"frame": {"x":86,"y":0,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"FinnIdle7.png":
+{
+	"frame": {"x":104,"y":0,"w":17,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":17,"h":32},
+	"sourceSize": {"w":17,"h":32}
+},
+"FinnIdle8.png":
+{
+	"frame": {"x":121,"y":0,"w":16,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":32},
+	"sourceSize": {"w":16,"h":32}
+},
+"FinnIdle9.png":
+{
+	"frame": {"x":137,"y":0,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "FinnIdle.png",
+	"format": "RGBA8888",
+	"size": {"w":155,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:462941986f40aebe7318063c0ed9c91d:cbc771755b6c8b45da26cefe4c32761b:f205139ad2323ba06af5160ce6218b94$"
+}
+}

@@ -26,7 +26,7 @@ export class Game {
     constructor() {
         console.log("hoi")
         // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
-        this._pixi = new PIXI.Application({ width: 800, height: 500 })
+        this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
         // this._pixi = new PIXI.Application({ 
         //     width: window.innerWidth, 
         //     height: window.innerHeight, 
@@ -45,7 +45,7 @@ export class Game {
     public loadCompleted() {
         let background : PIXI.Texture = PIXI.Texture.from("backgroundImage")
         let backgroundSprite =  new PIXI.Sprite(background)
-        backgroundSprite.scale.set(0.5)
+        backgroundSprite.scale.set(0.75)
         this._pixi.stage.addChild(backgroundSprite)
 
         let frames: PIXI.Texture [][] = this.createFinnFrames()

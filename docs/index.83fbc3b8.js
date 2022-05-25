@@ -551,8 +551,8 @@ class Game {
         console.log("hoi");
         // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
         this._pixi = new _pixiJs.Application({
-            width: 800,
-            height: 500
+            width: window.innerWidth,
+            height: window.innerHeight
         });
         // this._pixi = new PIXI.Application({ 
         //     width: window.innerWidth, 
@@ -566,7 +566,7 @@ class Game {
     loadCompleted() {
         let background = _pixiJs.Texture.from("backgroundImage");
         let backgroundSprite = new _pixiJs.Sprite(background);
-        backgroundSprite.scale.set(0.5);
+        backgroundSprite.scale.set(0.75);
         this._pixi.stage.addChild(backgroundSprite);
         let frames = this.createFinnFrames();
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50);
@@ -37218,18 +37218,18 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
     speedY = 5;
     frames = [];
     constructor(game, textures, x, y){
-        super(textures[1]);
+        super(textures[0]);
         this.game = game;
         this.frames = textures;
         /*
          * An AnimatedSprite inherits all the properties of a PIXI sprite
          * so you can change its position, its anchor, mask it, etc
-         */ this.x = 300;
-        this.y = 300;
-        this.scale.set(4);
+         */ this.x = 400;
+        this.y = 650;
+        this.scale.set(5);
         this.animationSpeed = 0.05;
         this.loop = true;
-        this.anchor.set(0.5);
+        this.anchor.set(1);
         this.play();
         this.game.pixi.stage.addChild(this);
     // this.onComplete = () => this.destroy()

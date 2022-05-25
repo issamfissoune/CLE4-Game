@@ -13,7 +13,7 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
     private frames: PIXI.Texture[][] = []
 
     constructor(game: Game, textures: PIXI.Texture[][], x: number, y: number, ) {
-        super(textures[1])
+        super(textures[0])
         this.game = game
         this.frames = textures
         /*
@@ -21,12 +21,12 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
          * so you can change its position, its anchor, mask it, etc
          */
 
-        this.x = 300
-        this.y = 300
-        this.scale.set(4)
+        this.x = 400
+        this.y = 650
+        this.scale.set(5)
         this.animationSpeed = 0.05;
         this.loop = true
-        this.anchor.set(0.5)
+        this.anchor.set(1)
         this.play();
 
         this.game.pixi.stage.addChild(this);

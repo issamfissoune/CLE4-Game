@@ -591,12 +591,21 @@ class Game {
         // create an array of textures from an image path
         let idle = [];
         let run = [];
+        let damage = [];
+        let attack = [];
+        let death = [];
         for(let i = 1; i <= 9; i++)// magically works since the spritesheet was loaded with the pixi loader
         idle.push(_pixiJs.Texture.from(`FinnIdle${i}.png`));
         for(let i1 = 1; i1 <= 7; i1++)run.push(_pixiJs.Texture.from(`FinnSpriteRun${i1}.png`));
+        for(let i2 = 1; i2 <= 3; i2++)damage.push(_pixiJs.Texture.from(`FinnDamage${i2}.png`));
+        for(let i3 = 1; i3 <= 5; i3++)attack.push(_pixiJs.Texture.from(`FinnAttack${i3}.png`));
+        for(let i4 = 1; i4 <= 5; i4++)death.push(_pixiJs.Texture.from(`FinnDead${i4}.png`));
         return [
             idle,
-            run
+            run,
+            damage,
+            attack,
+            death
         ];
     }
 }
@@ -37209,7 +37218,7 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
     speedY = 5;
     frames = [];
     constructor(game, textures, x, y){
-        super(textures[0]);
+        super(textures[1]);
         this.game = game;
         this.frames = textures;
         /*
@@ -37218,7 +37227,7 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
          */ this.x = 300;
         this.y = 300;
         this.scale.set(4);
-        this.animationSpeed = 0.04;
+        this.animationSpeed = 0.05;
         this.loop = true;
         this.anchor.set(0.5);
         this.play();

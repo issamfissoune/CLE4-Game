@@ -13,7 +13,7 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
     private frames: PIXI.Texture[][] = []
 
     constructor(game: Game, textures: PIXI.Texture[][], x: number, y: number, ) {
-        super(textures[0])
+        super(textures[1])
         this.game = game
         this.frames = textures
         /*
@@ -24,7 +24,7 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
         this.x = 300
         this.y = 300
         this.scale.set(4)
-        this.animationSpeed = 0.04;
+        this.animationSpeed = 0.05;
         this.loop = true
         this.anchor.set(0.5)
         this.play();
@@ -61,4 +61,6 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
             this.y =this.game.pixi.screen.bottom - this.height
         }
     }
+
+
 }

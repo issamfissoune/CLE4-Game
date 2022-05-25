@@ -1,3 +1,4 @@
+import { destroyTextureCache } from "@pixi/utils"
 import * as PIXI from "pixi.js"
 import { Assets } from './asset'
 // import { FinnIdle } from './finnIdle'
@@ -74,6 +75,9 @@ export class Game {
         // create an array of textures from an image path
         let idle: PIXI.Texture[] = [];
         let run : PIXI.Texture[] = [];
+        let damage: PIXI.Texture[]= [];
+        let attack : PIXI.Texture[] = [];
+        let death: PIXI.Texture[] = [];
         for (let i = 1; i <= 9; i++) {
             // magically works since the spritesheet was loaded with the pixi loader
             
@@ -84,7 +88,21 @@ export class Game {
             run.push(PIXI.Texture.from(`FinnSpriteRun${i}.png`))
         }
         
-        return [idle, run];
+        for(let i = 1; i<=3; i++){
+            damage.push(PIXI.Texture.from(`FinnDamage${i}.png`))
+        }
+
+       
+        for(let i = 1; i<=5; i++){
+            attack.push(PIXI.Texture.from(`FinnAttack${i}.png`))
+        }
+
+        for(let i= 1; i<= 5; i++){
+            death.push(PIXI.Texture.from(`FinnDead${i}.png`))
+        }
+
+
+        return [idle, run, damage, attack, death];
         
         
         

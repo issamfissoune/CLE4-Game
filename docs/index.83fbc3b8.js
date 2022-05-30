@@ -541,6 +541,7 @@ var _asset = require("./asset");
 // import { FinnDamage } from "./finnDamage"
 // import { FinnAttack } from "./FinnAttack"
 var _finnTheHuman = require("./FinnTheHuman");
+var _healthbar = require("./healthbar");
 class Game {
     // loader: PIXI.Loader
     // Properties
@@ -571,6 +572,8 @@ class Game {
         this._pixi.stage.addChild(backgroundSprite);
         let frames = this.createFinnFrames();
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50);
+        let healthbar = new _healthbar.HealthBar(-5, -12, 100, 0x00FF00, 0xff0000);
+        this.finnTheHuman.addChild(healthbar);
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()
@@ -612,7 +615,7 @@ class Game {
     }
 }
 
-},{"pixi.js":"dsYej","./asset":"cIMAM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./FinnTheHuman":"9oUG7"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37172,7 +37175,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/City1.png":"hK38Y"}],"hK38Y":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City1.png":"hK38Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hK38Y":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37315,6 +37318,34 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
     onButtonUp() {
         //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
         this.setFrames(0);
+    }
+}
+
+},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dInwI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "HealthBar", ()=>HealthBar
+);
+var _pixiJs = require("pixi.js");
+class HealthBar extends _pixiJs.Graphics {
+    constructor(x, y, maxHealth, color, borderColor){
+        super();
+        const filter = new _pixiJs.filters.ColorMatrixFilter();
+        this.filters = [
+            filter
+        ];
+        filter.hue(maxHealth, false);
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.borderColor = borderColor;
+        this.show();
+    }
+    show() {
+        this.lineStyle(1, this.borderColor);
+        this.beginFill(this.color);
+        this.drawRect(0, 0, window.innerWidth * 0.02, 2);
+        this.endFill();
     }
 }
 

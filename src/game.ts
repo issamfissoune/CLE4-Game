@@ -6,6 +6,7 @@ import { Assets } from './asset'
 // import { FinnDamage } from "./finnDamage"
 // import { FinnAttack } from "./FinnAttack"
 import { FinnTheHuman } from "./FinnTheHuman"
+import { HealthBar } from "./healthbar"
 
 export class Game {
     private finnTheHuman: FinnTheHuman
@@ -53,6 +54,8 @@ export class Game {
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
 
+        let healthbar = new HealthBar(-5, -12, 100, 0x00FF00, 0xff0000)
+        this.finnTheHuman.addChild(healthbar)
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()

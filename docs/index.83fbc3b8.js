@@ -548,6 +548,7 @@ class Game {
         return this._pixi;
     }
     constructor(){
+        _pixiJs.settings.SCALE_MODE = _pixiJs.SCALE_MODES.NEAREST;
         console.log("hoi");
         // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
         this._pixi = new _pixiJs.Application({
@@ -37227,8 +37228,8 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
          * An AnimatedSprite inherits all the properties of a PIXI sprite
          * so you can change its position, its anchor, mask it, etc
          */ this.x = x;
-        this.y = 650;
-        this.scale.set(4);
+        this.y = 550;
+        this.scale.set(6);
         this.animationSpeed = 0.05;
         this.loop = true;
         this.anchor.set(0.5);
@@ -37269,17 +37270,17 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
             case "A":
             case "ARROWLEFT":
                 this.speedX = -3;
-                this.scale.set(-4, 4);
+                this.scale.set(-6, 6);
                 this.setFrames(1);
                 break;
             case "D":
             case "ARROWRIGHT":
                 this.speedX = 3;
-                this.scale.set(4);
+                this.scale.set(6);
                 this.setFrames(1);
                 break;
             case "Q":
-                this.scale.set(4);
+                this.scale.set(6);
                 this.setFrames(3);
         }
     }

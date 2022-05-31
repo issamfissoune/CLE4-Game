@@ -6,6 +6,7 @@ import { Assets } from './asset'
 // import { FinnDamage } from "./finnDamage"
 // import { FinnAttack } from "./FinnAttack"
 import { FinnTheHuman } from "./FinnTheHuman"
+import { HealthBar } from "./healthbar"
 
 export class Game {
     private finnTheHuman: FinnTheHuman
@@ -47,11 +48,14 @@ export class Game {
     public loadCompleted() {
         let background : PIXI.Texture = PIXI.Texture.from("backgroundImage")
         let backgroundSprite =  new PIXI.Sprite(background)
-        backgroundSprite.scale.set(0.75)
+        backgroundSprite.scale.set(1)
         this._pixi.stage.addChild(backgroundSprite)
 
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
+
+        let healthbar = new HealthBar(-5, -12, 100, 0x00FF00, 0xff0000)
+        this.finnTheHuman.addChild(healthbar)
 
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
@@ -67,10 +71,12 @@ export class Game {
     }
 
     private update(delta: number) {
+
         // this.finnIdle.update(delta)
         // this.finnRun.update(delta)
         // this.finnDamage.update(delta)
         // this.finnAttack.update(delta)
+        
         this.finnTheHuman.update(delta)
     }
 

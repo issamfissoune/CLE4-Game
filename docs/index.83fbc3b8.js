@@ -526,96 +526,43 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"kuM8f":[function(require,module,exports) {
-var _game = require("./game");
-new _game.Game();
+var _startScreen = require("./startScreen");
+new _startScreen.StartScreen() // new Game()
+;
 
-},{"./game":"edeGs"}],"edeGs":[function(require,module,exports) {
+},{"./startScreen":"3JdQz"}],"3JdQz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Game", ()=>Game
+parcelHelpers.export(exports, "StartScreen", ()=>StartScreen
 );
 var _pixiJs = require("pixi.js");
 var _asset = require("./asset");
-// import { FinnIdle } from './finnIdle'
-// import { FinnRun } from "./finnRun"
-// import { FinnDamage } from "./finnDamage"
-// import { FinnAttack } from "./FinnAttack"
-var _finnTheHuman = require("./FinnTheHuman");
-var _healthbar = require("./healthbar");
-class Game {
-    // loader: PIXI.Loader
-    // Properties
-    get pixi() {
-        return this._pixi;
-    }
+class StartScreen {
     constructor(){
         _pixiJs.settings.SCALE_MODE = _pixiJs.SCALE_MODES.NEAREST;
-        console.log("hoi");
-        // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
         this._pixi = new _pixiJs.Application({
             width: window.innerWidth,
             height: window.innerHeight
         });
-        // this._pixi = new PIXI.Application({ 
-        //     width: window.innerWidth, 
-        //     height: window.innerHeight, 
-        //     resolution: devicePixelRatio  })
         document.body.appendChild(this._pixi.view);
         let asset = new _asset.Assets(this);
-        // this.loader = asset
-        console.log(asset);
     }
     loadCompleted() {
         let background = _pixiJs.Texture.from("backgroundImage");
         let backgroundSprite = new _pixiJs.Sprite(background);
-        backgroundSprite.scale.set(0.75);
+        backgroundSprite.scale.set(1);
         this._pixi.stage.addChild(backgroundSprite);
-        let frames = this.createFinnFrames();
-        this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50);
-        let healthbar = new _healthbar.HealthBar(-5, -12, 100, 0x00FF00, 0xff0000);
-        this.finnTheHuman.addChild(healthbar);
-        // let frames = this.createFinnFrames()
-        // this.finnIdle = new FinnIdle(this, frames, 100, 100)
-        // let run = this.createFinnFrames2()
-        // this.finnRun = new FinnRun(this, run, 100, 100)
-        // let damage = this.createFinnFrames3()
-        // this.finnDamage = new FinnDamage(this, damage, 100, 100)
-        // let attack = this.createFinnFrames4()
-        // this.finnAttack = new FinnAttack(this, attack, 100, 100)
-        this._pixi.ticker.add((delta)=>this.update(delta)
-        );
-    }
-    update(delta) {
-        // this.finnIdle.update(delta)
-        // this.finnRun.update(delta)
-        // this.finnDamage.update(delta)
-        // this.finnAttack.update(delta)
-        this.finnTheHuman.update(delta);
-    }
-    createFinnFrames() {
-        // create an array of textures from an image path
-        let idle = [];
-        let run = [];
-        let damage = [];
-        let attack = [];
-        let death = [];
-        for(let i = 1; i <= 9; i++)// magically works since the spritesheet was loaded with the pixi loader
-        idle.push(_pixiJs.Texture.from(`FinnIdle${i}.png`));
-        for(let i1 = 1; i1 <= 7; i1++)run.push(_pixiJs.Texture.from(`FinnSpriteRun${i1}.png`));
-        for(let i2 = 1; i2 <= 3; i2++)damage.push(_pixiJs.Texture.from(`FinnDamage${i2}.png`));
-        for(let i3 = 1; i3 <= 5; i3++)attack.push(_pixiJs.Texture.from(`FinnAttack${i3}.png`));
-        for(let i4 = 1; i4 <= 5; i4++)death.push(_pixiJs.Texture.from(`FinnDead${i4}.png`));
-        return [
-            idle,
-            run,
-            damage,
-            attack,
-            death
-        ];
+        let startButton = _pixiJs.Texture.from("startButton");
+        let startButtonSprite = new _pixiJs.Sprite(startButton);
+        startButtonSprite.scale.set(0.5);
+        startButtonSprite.anchor.set(0.5);
+        startButtonSprite.x = window.innerWidth * 0.5;
+        startButtonSprite.y = window.innerHeight * 0.5;
+        this._pixi.stage.addChild(startButtonSprite);
     }
 }
 
-},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./asset":"cIMAM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37136,8 +37083,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Assets", ()=>Assets
 );
 var _pixiJs = require("pixi.js");
+// import { Game } from './game'
 var _city1Png = require("./images/City1.png");
 var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
+var _newGameButtonPng = require("./images/newGameButton.png");
+var _newGameButtonPngDefault = parcelHelpers.interopDefault(_newGameButtonPng);
 class Assets extends _pixiJs.Loader {
     // private game: Game
     assets = [];
@@ -37150,6 +37100,10 @@ class Assets extends _pixiJs.Loader {
             // {name: "finn_run", url:"finnRun.json"},
             // {name: "finn_damage", url: "FinnDamage.json"},
             // {name: "finn_attack", url: "FinnAttack.json"},
+            {
+                name: "startButton",
+                url: _newGameButtonPngDefault.default
+            },
             {
                 name: "backgroundImage",
                 url: _city1PngDefault.default
@@ -37175,7 +37129,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","./images/City1.png":"hK38Y","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hK38Y":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City1.png":"hK38Y","./images/newGameButton.png":"81CKY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hK38Y":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37212,143 +37166,9 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"9oUG7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "FinnTheHuman", ()=>FinnTheHuman
-);
-var _pixiJs = require("pixi.js");
-class FinnTheHuman extends _pixiJs.AnimatedSprite {
-    speedX = 0;
-    // private speedY: number = 0
-    frames = [];
-    previousFrame = -1;
-    constructor(game, textures, x, y){
-        super(textures[0]);
-        this.game = game;
-        this.frames = textures;
-        /*
-         * An AnimatedSprite inherits all the properties of a PIXI sprite
-         * so you can change its position, its anchor, mask it, etc
-         */ this.x = x;
-        this.y = 550;
-        this.scale.set(6);
-        this.animationSpeed = 0.05;
-        this.loop = true;
-        this.anchor.set(0.5);
-        this.play();
-        this.game.pixi.stage.addChild(this);
-        // this.onComplete = () => this.destroy()
-        window.addEventListener("keydown", (e)=>this.onKeyDown(e)
-        );
-        window.addEventListener("keyup", (e)=>this.onKeyUp(e)
-        );
-    }
-    update(delta) {
-        super.update(delta);
-        this.x += this.speedX * delta;
-    // this.fall(delta)
-    // this.keepInScreen()
-    }
-    // private fall(delta): void {
-    //     this.x += this.speedX * delta
-    //     this.y += this.speedY * delta
-    //     this.speedY += this.gravity
-    // }
-    // private keepInScreen() {
-    //     if (this.getBounds().left < 0) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.left
-    //     }
-    //     if (this.getBounds().right > this.game.pixi.screen.right) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.right - this.width
-    //     }
-    //     if (this.getBounds().bottom > this.game.pixi.screen.bottom) {
-    //         this.y =this.game.pixi.screen.bottom - this.height
-    //     }
-    // }
-    onKeyDown(e) {
-        switch(e.key.toUpperCase()){
-            case "A":
-            case "ARROWLEFT":
-                this.speedX = -3;
-                this.scale.set(-6, 6);
-                this.setFrames(1);
-                break;
-            case "D":
-            case "ARROWRIGHT":
-                this.speedX = 3;
-                this.scale.set(6);
-                this.setFrames(1);
-                break;
-            case "Q":
-                this.scale.set(6);
-                this.setFrames(3);
-        }
-    }
-    onKeyUp(e) {
-        switch(e.key.toUpperCase()){
-            case " ":
-                break;
-            case "A":
-            case "D":
-            case "Q":
-            case "ARROWLEFT":
-            case "ARROWRIGHT":
-                this.speedX = 0;
-                this.setFrames(0);
-                break;
-        }
-    }
-    setFrames(frame) {
-        if (this.previousFrame != frame) {
-            console.log("set frames");
-            this.textures = this.frames[frame];
-            this.loop = true;
-            this.play();
-            this.previousFrame = frame;
-        }
-    }
-    onButtonDown() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
-        this.setFrames(3);
-        console.log("working");
-    }
-    onButtonUp() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
-        this.setFrames(0);
-    }
-}
+},{}],"81CKY":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "newGameButton.7dd07be9.png" + "?" + Date.now();
 
-},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dInwI":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "HealthBar", ()=>HealthBar
-);
-var _pixiJs = require("pixi.js");
-class HealthBar extends _pixiJs.Graphics {
-    constructor(x, y, maxHealth, color, borderColor){
-        super();
-        const filter = new _pixiJs.filters.ColorMatrixFilter();
-        this.filters = [
-            filter
-        ];
-        filter.hue(maxHealth, false);
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.borderColor = borderColor;
-        this.show();
-    }
-    show() {
-        this.lineStyle(1, this.borderColor);
-        this.beginFill(this.color);
-        this.drawRect(0, 0, window.innerWidth * 0.02, 2);
-        this.endFill();
-    }
-}
-
-},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
+},{"./helpers/bundle-url":"lgJ39"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
 
 //# sourceMappingURL=index.83fbc3b8.js.map

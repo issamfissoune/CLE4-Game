@@ -5,12 +5,16 @@ export class HealthBar extends PIXI.Graphics {
     maxHealth: number;
     color: number;
     borderColor : number;
+    filter : number
+        
 
     constructor(x: number, y: number , maxHealth: number, color: number, borderColor : number){
         super()
-        const filter = new PIXI.filters.ColorMatrixFilter()
+
+        let filter = new PIXI.filters.ColorMatrixFilter()
         this.filters = [filter];
         filter.hue(maxHealth, false);
+
         this.x = x;
         this.y = y;
         this.color = color;
@@ -20,7 +24,7 @@ export class HealthBar extends PIXI.Graphics {
 
     show() {
         this.lineStyle(1, this.borderColor)
-        this.beginFill(this.color)
+        this.beginFill(this.filter)
         this.drawRect(0, 0, window.innerWidth * 0.02, 2);
         this.endFill()
     }

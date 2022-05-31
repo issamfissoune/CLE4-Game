@@ -550,11 +550,12 @@ class Game {
     constructor(){
         _pixiJs.settings.SCALE_MODE = _pixiJs.SCALE_MODES.NEAREST;
         console.log("hoi");
-        // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
         this._pixi = new _pixiJs.Application({
-            width: window.innerWidth,
-            height: window.innerHeight
+            width: 1440,
+            height: 900,
+            backgroundColor: 0x1099bb
         });
+        // this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
         // this._pixi = new PIXI.Application({ 
         //     width: window.innerWidth, 
         //     height: window.innerHeight, 
@@ -612,7 +613,7 @@ class Game {
     }
 }
 
-},{"pixi.js":"dsYej","./asset":"cIMAM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./FinnTheHuman":"9oUG7"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37133,8 +37134,8 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Assets", ()=>Assets
 );
 var _pixiJs = require("pixi.js");
-var _city1Png = require("./images/City1.png");
-var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
+var _city2Png = require("./images/City2.png");
+var _city2PngDefault = parcelHelpers.interopDefault(_city2Png);
 class Assets extends _pixiJs.Loader {
     // private game: Game
     assets = [];
@@ -37149,7 +37150,7 @@ class Assets extends _pixiJs.Loader {
             // {name: "finn_attack", url: "FinnAttack.json"},
             {
                 name: "backgroundImage",
-                url: _city1PngDefault.default
+                url: _city2PngDefault.default
             },
             {
                 name: "All_Moves",
@@ -37172,8 +37173,8 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/City1.png":"hK38Y"}],"hK38Y":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
+},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gJfU4":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
@@ -37228,8 +37229,8 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
          * An AnimatedSprite inherits all the properties of a PIXI sprite
          * so you can change its position, its anchor, mask it, etc
          */ this.x = x;
-        this.y = 550;
-        this.scale.set(6);
+        this.y = 600;
+        this.scale.set(5);
         this.animationSpeed = 0.05;
         this.loop = true;
         this.anchor.set(0.5);
@@ -37270,18 +37271,18 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
             case "A":
             case "ARROWLEFT":
                 this.speedX = -3;
-                this.scale.set(-6, 6);
+                this.scale.set(-5, 5);
                 this.setFrames(1);
                 break;
             case "D":
             case "ARROWRIGHT":
                 this.speedX = 3;
-                this.scale.set(6);
+                this.scale.set(5);
                 this.setFrames(1);
                 break;
             case "Q":
-                this.scale.set(6);
-                this.setFrames(3);
+                this.scale.set(5);
+                this.setFrames(2);
         }
     }
     onKeyUp(e) {

@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js'
 import { Game } from './game'
-import backgroundImage from './images/City1.png'
+import backgroundImage from './images/City2.png'
 
 // json bestand moet in de static map omdat de pixi loader de json inleest en interpreteert
 // spritesheet png moet in de static map omdat de pixi loader niet de dynamische bestandsnaam kan gebruiken

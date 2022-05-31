@@ -27,8 +27,8 @@ export class Game {
     constructor() {
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         console.log("hoi")
-        // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
-        this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
+        this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
+        // this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
         // this._pixi = new PIXI.Application({ 
         //     width: window.innerWidth, 
         //     height: window.innerHeight, 

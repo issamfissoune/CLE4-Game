@@ -23,8 +23,8 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
          */
 
         this.x = x
-        this.y = 550
-        this.scale.set(6)
+        this.y = 600
+        this.scale.set(5)
         this.animationSpeed = 0.05;
         this.loop = true
         this.anchor.set(0.5)
@@ -74,18 +74,19 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
             case "A":
             case "ARROWLEFT":
                 this.speedX = -3
-                this.scale.set(-6, 6)
+                this.scale.set(-5, 5)
                 this.setFrames(1)
                 break
             case "D":
             case "ARROWRIGHT":
                 this.speedX = 3
-                this.scale.set(6)
+                this.scale.set(5)
                 this.setFrames(1)
                 break
             case "Q":
-                this.scale.set(6)
-                this.setFrames(3)
+                this.scale.set(5)
+                this.setFrames(2)
+                
                 // if(this.y > 0){
                 //    this.scale.set(-1, 4)
                 // } else{

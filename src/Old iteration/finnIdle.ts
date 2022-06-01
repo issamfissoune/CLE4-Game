@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
-import { Game } from './game'
+import { Game } from '../game'
 
-export class FinnAttack extends PIXI.AnimatedSprite {
+export class FinnIdle extends PIXI.AnimatedSprite {
 
     // private readonly gravity: number = 0.0981
     // private readonly bounce: number = 0.985
@@ -19,14 +19,12 @@ export class FinnAttack extends PIXI.AnimatedSprite {
          * so you can change its position, its anchor, mask it, etc
          */
 
-        this.x = 300
-        this.y = 300
-        this.scale.x *= -1
-        // this.scale.set(4)
-        // this.scale.y = 4
-        this.animationSpeed = 0.04;
+        this.x = 200
+        this.y = 600
+        this.scale.set(4)
+        this.animationSpeed = 0.03;
         this.loop = true
-        this.anchor.set(1)
+        this.anchor.set(0.5)
         this.play();
 
         this.game.pixi.stage.addChild(this);
@@ -61,4 +59,11 @@ export class FinnAttack extends PIXI.AnimatedSprite {
             this.y =this.game.pixi.screen.bottom - this.height
         }
     }
+
+    // private bounceUpFrom(height: number): void {
+    //     // place on top of height (screen or object)
+    //     this.y = height
+    //     // keep the object bouncing without loss
+    //     this.speedY *= -this.bounce
+    // }
 }

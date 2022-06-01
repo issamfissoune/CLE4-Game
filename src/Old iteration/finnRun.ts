@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js'
-import { Game } from './game'
+import { Game } from '../game'
 
-export class FinnIdle extends PIXI.AnimatedSprite {
+export class FinnRun extends PIXI.AnimatedSprite {
 
     // private readonly gravity: number = 0.0981
     // private readonly bounce: number = 0.985
@@ -19,14 +19,14 @@ export class FinnIdle extends PIXI.AnimatedSprite {
          * so you can change its position, its anchor, mask it, etc
          */
 
-        this.x = 200
+        this.x = 100
         this.y = 600
         this.scale.set(4)
-        this.animationSpeed = 0.03;
+        this.animationSpeed = 0.07;
         this.loop = true
         this.anchor.set(0.5)
         this.play();
-
+        
         this.game.pixi.stage.addChild(this);
         // this.onComplete = () => this.destroy()
 
@@ -34,7 +34,8 @@ export class FinnIdle extends PIXI.AnimatedSprite {
 
     public update(delta: number): void {
         super.update(delta)
-
+        this.moveLeft(delta)
+       
 
         // this.fall(delta)
         this.keepInScreen()
@@ -52,6 +53,8 @@ export class FinnIdle extends PIXI.AnimatedSprite {
             this.x = this.game.pixi.screen.left
         }
         if (this.getBounds().right > this.game.pixi.screen.right) {
+            
+            
             this.speedX *= -1
             this.x = this.game.pixi.screen.right - this.width
         }
@@ -60,10 +63,9 @@ export class FinnIdle extends PIXI.AnimatedSprite {
         }
     }
 
-    // private bounceUpFrom(height: number): void {
-    //     // place on top of height (screen or object)
-    //     this.y = height
-    //     // keep the object bouncing without loss
-    //     this.speedY *= -this.bounce
-    // }
+    moveLeft(delta){
+        this.x += delta * 1 
+    }
+
+    
 }

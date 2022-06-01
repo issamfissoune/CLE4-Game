@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js"
-import { Assets } from './asset'
+// import { Assets } from './asset'
 
 export class StartScreen {
 

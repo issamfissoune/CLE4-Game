@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js'
 import { Game } from './game'
 import { HealthBar } from './healthbar'
 
-export class FinnTheHuman extends PIXI.AnimatedSprite {
+export class Worm extends PIXI.AnimatedSprite {
 
     // private readonly gravity: number = 0.0981
     // private readonly bounce: number = 0.985
@@ -24,10 +24,10 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
          * so you can change its position, its anchor, mask it, etc
          */
 
-        this.x = x
+        this.x = 500
         this.y = 600
         this.scale.set(5)
-        this.animationSpeed = 0.05;
+        this.animationSpeed = 0.06;
         this.loop = true
         this.anchor.set(0.5)
         this.play();
@@ -74,20 +74,20 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
     onKeyDown(e: KeyboardEvent): any {
 
         switch (e.key.toUpperCase()) {
-            case "A":
-            case "ARROWLEFT":
-                this.speedX = -3
-                this.scale.set(-5, 5)
-                this.healthbar.scale.set(-1, 1)
-                this.setFrames(1)
-                break
-            case "D":
-            case "ARROWRIGHT":
-                this.speedX = 3
-                this.scale.set(5)
-                this.healthbar.scale.set(1)
-                this.setFrames(1)
-                break
+            // case "A":
+            // case "ARROWLEFT":
+            //     this.speedX = -3
+            //     this.scale.set(-5, 5)
+            //     this.healthbar.scale.set(-1, 1)
+            //     this.setFrames(1)
+            //     break
+            // case "D":
+            // case "ARROWRIGHT":
+            //     this.speedX = 3
+            //     this.scale.set(5)
+            //     this.healthbar.scale.set(1)
+            //     this.setFrames(1)
+            //     break
             case "Q":
                 this.scale.set(5)
                 this.setFrames(2)
@@ -124,16 +124,4 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
             this.previousFrame = frame
         }
     }
-
-    onButtonDown() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
-        this.setFrames(3)
-        console.log("working")
-        }
-
-    onButtonUp() {
-            //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
-        this.setFrames(0)    
-            
-        }        
 }

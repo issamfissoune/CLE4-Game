@@ -7,7 +7,7 @@ import { Assets } from './asset'
 // import { FinnAttack } from "./FinnAttack"
 import { FinnTheHuman } from "./FinnTheHuman"
 import { HealthBar } from "./healthbar"
-
+import { Worm } from "./worm"
 export class Game {
     private finnTheHuman: FinnTheHuman
     // private finnIdle: FinnIdle
@@ -16,6 +16,7 @@ export class Game {
     // private finnDamage: FinnDamage
     // private finnAttack: FinnAttack
     background: PIXI.Texture
+    private worm: Worm
     
     // loader: PIXI.Loader
 
@@ -40,22 +41,28 @@ export class Game {
 
 
         let asset = new Assets(this)
+
+      
         // this.loader = asset
         console.log(asset)
          
     }
 
     public loadCompleted() {
-        let background : PIXI.Texture = PIXI.Texture.from("backgroundImage")
+        let background : PIXI.Texture = PIXI.Texture.from("city2")
         let backgroundSprite =  new PIXI.Sprite(background)
-        backgroundSprite.scale.set(1)
+        backgroundSprite.scale.set(0.75)
         this._pixi.stage.addChild(backgroundSprite)
 
-        let frames: PIXI.Texture [][] = this.createFinnFrames()
-        this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
+        let wormFrames: PIXI.Texture [] [] = this.createWormFrames()
+        this.worm = new Worm(this, wormFrames, 50, 50)
 
-        let healthbar = new HealthBar(-5, -12, 100, 0x00FF00, 0xff0000)
-        this.finnTheHuman.addChild(healthbar)
+        let finnFrames: PIXI.Texture [][] = this.createFinnFrames()
+        this.finnTheHuman = new FinnTheHuman(this, finnFrames, 50, 50)
+
+        
+
+        
 
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
@@ -112,6 +119,39 @@ export class Game {
 
 
         return [idle, run, damage, attack, death];
+        
+        
+        
+    }
+
+    private createWormFrames (): PIXI.Texture[][]{
+        let idleWorm: PIXI.Texture[] = [];
+        let damageWorm: PIXI.Texture[]= [];
+        let jumpWorm : PIXI.Texture[] = [];
+        let deathWorm: PIXI.Texture[] = [];
+        for (let i = 1; i <= 8; i++) {
+            // magically works since the spritesheet was loaded with the pixi loader
+            
+            idleWorm.push(PIXI.Texture.from(`WormIdle${i}.png`));
+        }
+
+        for(let i = 1; i<=4; i++){
+            damageWorm.push(PIXI.Texture.from(`wormDamage${i}.png`))
+        }
+        
+        for(let i = 1; i<=8; i++){
+            jumpWorm.push(PIXI.Texture.from(`wormJump${i}.png`))
+        }
+
+       
+        for(let i = 1; i<=6; i++){
+            deathWorm.push(PIXI.Texture.from(`wormDie${i}.png`))
+        }
+
+        
+
+
+        return [idleWorm, damageWorm, jumpWorm, deathWorm];
         
         
         

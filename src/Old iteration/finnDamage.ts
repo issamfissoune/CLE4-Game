@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js'
-import { Game } from './game'
+import { Game } from '../game'
 
 export class FinnDamage extends PIXI.AnimatedSprite {
 

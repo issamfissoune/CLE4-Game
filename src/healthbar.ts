@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js"
 
 export class HealthBar extends PIXI.Graphics {
+    
     healthValue: number;
     maxHealth: number;
     color: number;
@@ -19,13 +20,14 @@ export class HealthBar extends PIXI.Graphics {
         this.y = y;
         this.color = color;
         this.borderColor = borderColor;
+        // this.pivot.set(0.5)
         this.show()
     }
 
     show() {
         this.lineStyle(1, this.borderColor)
         this.beginFill(this.filter)
-        this.drawRect(0, 0, window.innerWidth * 0.02, 2);
+        this.drawRect(-13, -12, window.innerWidth * 0.02, 2);
         this.endFill()
     }
 }

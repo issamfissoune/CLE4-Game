@@ -2,5 +2,5 @@ import { Game } from "./game";
 import { StartScreen } from "./startScreen"
 
 
-new StartScreen()
-// new Game()
+// new StartScreen()
+new Game()

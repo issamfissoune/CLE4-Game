@@ -8,6 +8,7 @@ import { Assets } from './asset'
 import { FinnTheHuman } from "./FinnTheHuman"
 import { HealthBar } from "./healthbar"
 
+
 export class Game {
     private finnTheHuman: FinnTheHuman
     // private finnIdle: FinnIdle
@@ -16,6 +17,7 @@ export class Game {
     // private finnDamage: FinnDamage
     // private finnAttack: FinnAttack
     background: PIXI.Texture
+    qBox: PIXI.Texture
     
     // loader: PIXI.Loader
 
@@ -28,8 +30,8 @@ export class Game {
     constructor() {
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         console.log("hoi")
-        this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
-        // this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
+        // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
+        this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
         // this._pixi = new PIXI.Application({ 
         //     width: window.innerWidth, 
         //     height: window.innerHeight, 
@@ -48,8 +50,16 @@ export class Game {
     public loadCompleted() {
         let background : PIXI.Texture = PIXI.Texture.from("backgroundImage")
         let backgroundSprite =  new PIXI.Sprite(background)
-        backgroundSprite.scale.set(1)
+        backgroundSprite.scale.set(0.70)
         this._pixi.stage.addChild(backgroundSprite)
+
+        let qBox: PIXI.Texture = PIXI.Texture.from("textBox")
+        let qBoxSprite = new PIXI.Sprite(qBox)
+        this._pixi.stage.addChild(qBoxSprite)
+        qBoxSprite.x = 700
+        qBoxSprite.y = 100
+        qBoxSprite.scale.set(2)
+        qBoxSprite.anchor.set(0.5)
 
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)

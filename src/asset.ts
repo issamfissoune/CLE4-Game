@@ -1,12 +1,13 @@
 import * as PIXI from 'pixi.js'
 
 import { Game } from './game'
-import backgroundImage from './images/City2.png'
+import backgroundImage2 from './images/City2.png'
 
 // import { Game } from './game'
 import backgroundImage from './images/City1.png'
 import { StartScreen } from './startScreen'
 import startButton from './images/newGameButton.png'
+import textBox from './images/textBox.png'
 
 // json bestand moet in de static map omdat de pixi loader de json inleest en interpreteert
 // spritesheet png moet in de static map omdat de pixi loader niet de dynamische bestandsnaam kan gebruiken
@@ -31,7 +32,9 @@ export class Assets extends PIXI.Loader {
             // {name: "finn_attack", url: "FinnAttack.json"},
             {name : "startButton", url: startButton},
             {name: "backgroundImage", url: backgroundImage},
-            {name: "All_Moves", url: "FinnCompleteSheet.json"}
+            {name: "All_Moves", url: "FinnCompleteSheet.json"},
+            {name: "textBox", url:textBox},
+            
         ]
 
         this.assets.forEach(asset => {

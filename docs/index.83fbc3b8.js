@@ -574,8 +574,6 @@ class Game {
         this._pixi.stage.addChild(backgroundSprite);
         let wormFrames = this.createWormFrames();
         this.worm = new _worm.Worm(this, wormFrames, 50, 50);
-        backgroundSprite.scale.set(0.70);
-        this._pixi.stage.addChild(backgroundSprite);
         let qBox = _pixiJs.Texture.from("textBox");
         let qBoxSprite = new _pixiJs.Sprite(qBox);
         this._pixi.stage.addChild(qBoxSprite);
@@ -597,8 +595,6 @@ class Game {
         qBoxSprite.addChild(vraag1);
         let frames = this.createFinnFrames();
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50);
-        let finnFrames = this.createFinnFrames();
-        this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, finnFrames, 50, 50);
         let vraag = new _question.VraagBox(_pixiJs.Texture.from("textbBox"), 700, 100, 'test');
         this.finnTheHuman.addChild(vraag);
         // let frames = this.createFinnFrames()

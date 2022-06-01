@@ -61,8 +61,7 @@ export class Game {
 
         let wormFrames: PIXI.Texture [] [] = this.createWormFrames()
         this.worm = new Worm(this, wormFrames, 50, 50)
-        backgroundSprite.scale.set(0.70)
-        this._pixi.stage.addChild(backgroundSprite)
+        
 
         let qBox: PIXI.Texture = PIXI.Texture.from("textBox")
         let qBoxSprite = new PIXI.Sprite(qBox)
@@ -91,9 +90,7 @@ export class Game {
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
 
-        let finnFrames: PIXI.Texture [][] = this.createFinnFrames()
-        this.finnTheHuman = new FinnTheHuman(this, finnFrames, 50, 50)
-
+        
         
 
         

@@ -543,6 +543,7 @@ var _asset = require("./asset");
 // import { FinnAttack } from "./FinnAttack"
 var _finnTheHuman = require("./FinnTheHuman");
 var _worm = require("./worm");
+var _question = require("./question");
 class Game {
     // loader: PIXI.Loader
     // Properties
@@ -552,12 +553,11 @@ class Game {
     constructor(){
         _pixiJs.settings.SCALE_MODE = _pixiJs.SCALE_MODES.NEAREST;
         console.log("hoi");
+        // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
         this._pixi = new _pixiJs.Application({
-            width: 1440,
-            height: 900,
-            backgroundColor: 0x1099bb
+            width: window.innerWidth,
+            height: window.innerHeight
         });
-        // this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
         // this._pixi = new PIXI.Application({ 
         //     width: window.innerWidth, 
         //     height: window.innerHeight, 
@@ -574,8 +574,33 @@ class Game {
         this._pixi.stage.addChild(backgroundSprite);
         let wormFrames = this.createWormFrames();
         this.worm = new _worm.Worm(this, wormFrames, 50, 50);
+        backgroundSprite.scale.set(0.70);
+        this._pixi.stage.addChild(backgroundSprite);
+        let qBox = _pixiJs.Texture.from("textBox");
+        let qBoxSprite = new _pixiJs.Sprite(qBox);
+        this._pixi.stage.addChild(qBoxSprite);
+        qBoxSprite.x = 700;
+        qBoxSprite.y = 100;
+        qBoxSprite.scale.set(2);
+        qBoxSprite.anchor.set(0.5);
+        let style = new _pixiJs.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 12,
+            fontWeight: 'bold',
+            fill: '#00ff99',
+            align: "center"
+        });
+        let vraag1 = new _pixiJs.Text('Wat is een divergente beweging', style);
+        vraag1.x = 0;
+        vraag1.anchor.set(0.5);
+        // vraag1.y = 100
+        qBoxSprite.addChild(vraag1);
+        let frames = this.createFinnFrames();
+        this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50);
         let finnFrames = this.createFinnFrames();
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, finnFrames, 50, 50);
+        let vraag = new _question.VraagBox(_pixiJs.Texture.from("textbBox"), 700, 100, 'test');
+        this.finnTheHuman.addChild(vraag);
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()
@@ -634,7 +659,7 @@ class Game {
     }
 }
 
-},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./worm":"3nqFj"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./worm":"3nqFj","./question":"4knq6"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37162,6 +37187,8 @@ var _city1Png = require("./images/City1.png");
 var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
 var _newGameButtonPng = require("./images/newGameButton.png");
 var _newGameButtonPngDefault = parcelHelpers.interopDefault(_newGameButtonPng);
+var _textBoxPng = require("./images/textBox.png");
+var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
 class Assets extends _pixiJs.Loader {
     // private game: Game
     assets = [];
@@ -37193,6 +37220,10 @@ class Assets extends _pixiJs.Loader {
             {
                 name: "worm",
                 url: "wormSpritesheet.json"
+            },
+            {
+                name: "textBox",
+                url: _textBoxPngDefault.default
             }, 
         ];
         this.assets.forEach((asset)=>{
@@ -37211,7 +37242,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/newGameButton.png":"81CKY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gJfU4":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/newGameButton.png":"81CKY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/textBox.png":"EDVpg"}],"gJfU4":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37253,6 +37284,9 @@ module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.
 
 },{"./helpers/bundle-url":"lgJ39"}],"81CKY":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "newGameButton.7dd07be9.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"EDVpg":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "textBox.8dbb072c.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"9oUG7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -37502,6 +37536,20 @@ class Worm extends _pixiJs.AnimatedSprite {
     }
 }
 
-},{"pixi.js":"dsYej","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
+},{"pixi.js":"dsYej","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "VraagBox", ()=>VraagBox
+);
+var _pixiJs = require("pixi.js");
+class VraagBox extends _pixiJs.Sprite {
+    constructor(texture, x, y, vraag){
+        super(texture);
+        this.x = x;
+        this.y = y;
+    }
+}
+
+},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
 
 //# sourceMappingURL=index.83fbc3b8.js.map

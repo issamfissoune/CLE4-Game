@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 
+
 // import { Game } from './game'
 import backgroundImage2 from './images/City2.png'
 
@@ -7,6 +8,7 @@ import { Game } from './game'
 import backgroundImage from './images/City1.png'
 import { StartScreen } from './startScreen'
 import startButton from './images/newGameButton.png'
+import textBox from './images/textBox.png'
 
 
 // json bestand moet in de static map omdat de pixi loader de json inleest en interpreteert
@@ -35,6 +37,8 @@ export class Assets extends PIXI.Loader {
             {name: "All_Moves", url: "FinnCompleteSheet.json"},
             {name: "city2", url: backgroundImage2},
             {name: "worm", url: "wormSpritesheet.json"},
+            {name: "textBox", url:textBox},
+            
         ]
 
         this.assets.forEach(asset => {

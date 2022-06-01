@@ -8,6 +8,9 @@ import { Assets } from './asset'
 import { FinnTheHuman } from "./FinnTheHuman"
 import { HealthBar } from "./healthbar"
 import { Worm } from "./worm"
+import { VraagBox } from "./question"
+
+
 export class Game {
     private finnTheHuman: FinnTheHuman
     // private finnIdle: FinnIdle
@@ -17,6 +20,8 @@ export class Game {
     // private finnAttack: FinnAttack
     background: PIXI.Texture
     private worm: Worm
+    qBox: PIXI.Texture
+    private vraagBox : VraagBox
     
     // loader: PIXI.Loader
 
@@ -29,8 +34,8 @@ export class Game {
     constructor() {
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         console.log("hoi")
-        this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
-        // this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
+        // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
+        this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
         // this._pixi = new PIXI.Application({ 
         //     width: window.innerWidth, 
         //     height: window.innerHeight, 
@@ -56,6 +61,35 @@ export class Game {
 
         let wormFrames: PIXI.Texture [] [] = this.createWormFrames()
         this.worm = new Worm(this, wormFrames, 50, 50)
+        backgroundSprite.scale.set(0.70)
+        this._pixi.stage.addChild(backgroundSprite)
+
+        let qBox: PIXI.Texture = PIXI.Texture.from("textBox")
+        let qBoxSprite = new PIXI.Sprite(qBox)
+        this._pixi.stage.addChild(qBoxSprite)
+        qBoxSprite.x = 700
+        qBoxSprite.y = 100
+        qBoxSprite.scale.set(2)
+        qBoxSprite.anchor.set(0.5)
+
+        let style = new PIXI.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 12,
+            fontWeight: 'bold',
+            fill: '#00ff99',
+            align: "center"
+
+        
+        })
+
+        let vraag1 = new PIXI.Text('Wat is een divergente beweging', style);
+        vraag1.x = 0
+        vraag1.anchor.set(0.5)
+        // vraag1.y = 100
+        qBoxSprite.addChild(vraag1)
+
+        let frames: PIXI.Texture [][] = this.createFinnFrames()
+        this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
 
         let finnFrames: PIXI.Texture [][] = this.createFinnFrames()
         this.finnTheHuman = new FinnTheHuman(this, finnFrames, 50, 50)
@@ -64,6 +98,8 @@ export class Game {
 
         
 
+        let vraag =new VraagBox(PIXI.Texture.from("textbBox"), 700, 100, 'test')
+        this.finnTheHuman.addChild(vraag)
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()

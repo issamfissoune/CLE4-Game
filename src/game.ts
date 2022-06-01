@@ -7,6 +7,7 @@ import { Assets } from './asset'
 // import { FinnAttack } from "./FinnAttack"
 import { FinnTheHuman } from "./FinnTheHuman"
 import { HealthBar } from "./healthbar"
+import { VraagBox } from "./question"
 
 
 export class Game {
@@ -18,6 +19,7 @@ export class Game {
     // private finnAttack: FinnAttack
     background: PIXI.Texture
     qBox: PIXI.Texture
+    private vraagBox : VraagBox
     
     // loader: PIXI.Loader
 
@@ -61,12 +63,30 @@ export class Game {
         qBoxSprite.scale.set(2)
         qBoxSprite.anchor.set(0.5)
 
+        let style = new PIXI.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 12,
+            fontWeight: 'bold',
+            fill: '#00ff99',
+            align: "center"
+
+        
+        })
+
+        let vraag1 = new PIXI.Text('Wat is een divergente beweging', style);
+        vraag1.x = 0
+        vraag1.anchor.set(0.5)
+        // vraag1.y = 100
+        qBoxSprite.addChild(vraag1)
+
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
 
         let healthbar = new HealthBar(-5, -12, 100, 0x00FF00, 0xff0000)
         this.finnTheHuman.addChild(healthbar)
 
+        let vraag =new VraagBox(PIXI.Texture.from("textbBox"), 700, 100, 'test')
+        this.finnTheHuman.addChild(vraag)
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()

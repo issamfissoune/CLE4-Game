@@ -7,7 +7,9 @@ import backgroundImage2 from './images/City2.png'
 import { Game } from './game'
 import backgroundImage from './images/City1.png'
 import { StartScreen } from './startScreen'
-import startButton from './images/newGameButton.png'
+import startScreenBG from './images/startScreenBG.png'
+import croppedbutton2 from './images/croppedbutton2.png'
+import croppedbuttonDown2 from './images/croppedbuttonDown2.png'
 import textBox from './images/textBox.png'
 
 
@@ -32,10 +34,12 @@ export class Assets extends PIXI.Loader {
             // {name: "finn_run", url:"finnRun.json"},
             // {name: "finn_damage", url: "FinnDamage.json"},
             // {name: "finn_attack", url: "FinnAttack.json"},
-            {name : "startButton", url: startButton},
+            {name : "croppedbutton2", url: croppedbutton2 },
+            {name : "croppedbuttonDown2", url: croppedbuttonDown2 },
             {name: "backgroundImage", url: backgroundImage},
             {name: "All_Moves", url: "FinnCompleteSheet.json"},
             {name: "city2", url: backgroundImage2},
+            {name: "startScreenBG", url: startScreenBG},
             {name: "worm", url: "wormSpritesheet.json"},
             {name: "textBox", url:textBox},
             

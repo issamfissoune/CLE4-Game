@@ -37176,8 +37176,12 @@ var _city2Png = require("./images/City2.png");
 var _city2PngDefault = parcelHelpers.interopDefault(_city2Png);
 var _city1Png = require("./images/City1.png");
 var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
-var _newGameButtonPng = require("./images/newGameButton.png");
-var _newGameButtonPngDefault = parcelHelpers.interopDefault(_newGameButtonPng);
+var _startScreenBGPng = require("./images/startScreenBG.png");
+var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
+var _croppedbutton2Png = require("./images/croppedbutton2.png");
+var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
+var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
+var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
 var _textBoxPng = require("./images/textBox.png");
 var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
 class Assets extends _pixiJs.Loader {
@@ -37193,8 +37197,12 @@ class Assets extends _pixiJs.Loader {
             // {name: "finn_damage", url: "FinnDamage.json"},
             // {name: "finn_attack", url: "FinnAttack.json"},
             {
-                name: "startButton",
-                url: _newGameButtonPngDefault.default
+                name: "croppedbutton2",
+                url: _croppedbutton2PngDefault.default
+            },
+            {
+                name: "croppedbuttonDown2",
+                url: _croppedbuttonDown2PngDefault.default
             },
             {
                 name: "backgroundImage",
@@ -37207,6 +37215,10 @@ class Assets extends _pixiJs.Loader {
             {
                 name: "city2",
                 url: _city2PngDefault.default
+            },
+            {
+                name: "startScreenBG",
+                url: _startScreenBGPngDefault.default
             },
             {
                 name: "worm",
@@ -37233,7 +37245,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","./images/City2.png":"d1b1P","./images/City1.png":"eLDX9","./images/newGameButton.png":"200nM","./images/textBox.png":"7DvR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d1b1P":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City2.png":"d1b1P","./images/City1.png":"eLDX9","./images/textBox.png":"7DvR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/startScreenBG.png":"eB5nT","./images/croppedbutton2.png":"eOQpn","./images/croppedbuttonDown2.png":"kWUZt"}],"d1b1P":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "City2.c31409ee.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37273,11 +37285,17 @@ exports.getOrigin = getOrigin;
 },{}],"eLDX9":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "City1.e72cac9e.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}],"200nM":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "newGameButton.7dd07be9.png" + "?" + Date.now();
-
 },{"./helpers/bundle-url":"lgJ39"}],"7DvR6":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "textBox.8dbb072c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"eB5nT":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"eOQpn":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "croppedbutton2.92544551.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"kWUZt":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"9oUG7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -37530,14 +37548,29 @@ class Worm extends _pixiJs.AnimatedSprite {
 },{"pixi.js":"dsYej","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "VraagBox", ()=>VraagBox
+parcelHelpers.export(exports, "Question", ()=>Question
 );
 var _pixiJs = require("pixi.js");
-class VraagBox extends _pixiJs.Sprite {
-    constructor(texture, x, y, vraag){
-        super(texture);
+class Question extends _pixiJs.Sprite {
+    constructor(x, y, vraag){
+        // PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+        super(_pixiJs.Texture.from("textBox"));
         this.x = x;
         this.y = y;
+        this.scale.set(2);
+        this.anchor.set(0.5);
+        let style = new _pixiJs.TextStyle({
+            fontFamily: 'ArcadeFont',
+            fontSize: 12,
+            fontWeight: 'bold',
+            fill: '#00ff99',
+            align: "center"
+        });
+        let vraag1 = new _pixiJs.Text(vraag, style);
+        vraag1.x = 0;
+        vraag1.anchor.set(0.5);
+        // vraag1.y = 100
+        this.addChild(vraag1);
     }
 }
 

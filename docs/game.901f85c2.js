@@ -530,6 +530,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Game", ()=>Game
 );
+// import { destroyTextureCache } from "@pixi/utils"
 var _pixiJs = require("pixi.js");
 var _asset = require("./asset");
 // import { FinnIdle } from './finnIdle'
@@ -600,7 +601,9 @@ class Game {
         // // vraag1.y = 100
         // qBoxSprite.addChild(vraag1)
         let frames = this.createFinnFrames();
-        this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50);
+        let sound = this.assetLoader.resources["swordSlash"].data;
+        this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50, sound);
+        console.log(sound);
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()
@@ -37231,6 +37234,8 @@ var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
 var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
 var _textBoxPng = require("./images/textBox.png");
 var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
+var _swordSlashMp3 = require("url:./sounds/swordSlash.mp3");
+var _swordSlashMp3Default = parcelHelpers.interopDefault(_swordSlashMp3);
 var _dirtPng = require("./images/dirt.png");
 var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
 var _vs2Png = require("./images/vs2.png");
@@ -37249,6 +37254,10 @@ class Assets extends _pixiJs.Loader {
             // {name: "finn_run", url:"finnRun.json"},
             // {name: "finn_damage", url: "FinnDamage.json"},
             // {name: "finn_attack", url: "FinnAttack.json"},
+            {
+                name: "swordSlash",
+                url: _swordSlashMp3Default.default
+            },
             {
                 name: "croppedbutton2",
                 url: _croppedbutton2PngDefault.default
@@ -37310,7 +37319,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","./images/City2.png":"d1b1P","./images/City1.png":"eLDX9","./images/startScreenBG.png":"eB5nT","./images/textBox.png":"7DvR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/croppedbutton2.png":"eOQpn","./images/croppedbuttonDown2.png":"kWUZt","./images/dirt.png":"dU0uC","./images/vs2.png":"lq1Kp","./images/heartHealth.png":"34Fa7"}],"d1b1P":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City2.png":"d1b1P","./images/City1.png":"eLDX9","./images/startScreenBG.png":"eB5nT","./images/textBox.png":"7DvR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/croppedbutton2.png":"eOQpn","./images/croppedbuttonDown2.png":"kWUZt","./images/dirt.png":"dU0uC","./images/vs2.png":"lq1Kp","./images/heartHealth.png":"34Fa7","url:./sounds/swordSlash.mp3":"4D8xv"}],"d1b1P":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "City2.c31409ee.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37371,6 +37380,9 @@ module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "vs2.cc
 },{"./helpers/bundle-url":"lgJ39"}],"34Fa7":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "heartHealth.a4d01e8b.png" + "?" + Date.now();
 
+},{"./helpers/bundle-url":"lgJ39"}],"4D8xv":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "swordSlash.afed3762.mp3" + "?" + Date.now();
+
 },{"./helpers/bundle-url":"lgJ39"}],"9oUG7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -37383,8 +37395,9 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
     // private speedY: number = 0
     frames = [];
     previousFrame = -1;
-    constructor(game, textures, x, y){
+    constructor(game, textures, x, y, sound){
         super(textures[0]);
+        this.swordSlash = sound;
         this.game = game;
         this.frames = textures;
         /*
@@ -37447,6 +37460,9 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
                 this.setFrames(1);
                 break;
             case "Q":
+                //this.swordSlash.play()
+                if (this.swordSlash.paused) this.swordSlash.play();
+                else this.swordSlash.currentTime = 0;
                 this.scale.set(5);
                 this.setFrames(3);
         }

@@ -527,9 +527,8 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"kuM8f":[function(require,module,exports) {
 var _lobby = require("./lobby");
-// new Game()
-// new StartScreen()
-new _lobby.Lobby();
+new _lobby.Lobby() // new Level()
+;
 
 },{"./lobby":"24bIG"}],"24bIG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

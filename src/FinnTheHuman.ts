@@ -1,4 +1,6 @@
 import * as PIXI from 'pixi.js'
+import { Assets } from './asset'
+
 import { Game } from './game'
 import { HealthBar } from './healthbar'
 
@@ -14,9 +16,12 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
     private frames: PIXI.Texture[][] = []
     private previousFrame: number = -1
     private healthbar: HealthBar
+    private swordSlash:HTMLAudioElement
 
-    constructor(game: Game, textures: PIXI.Texture[][], x: number, y: number,) {
+    constructor(game: Game, textures: PIXI.Texture[][], x: number, y: number, sound:HTMLAudioElement) {
         super(textures[0])
+
+        this.swordSlash = sound
         this.game = game
         this.frames = textures
         /*
@@ -40,7 +45,6 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
         
         this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
         this.addChild(this.healthbar)
-
     }
 
     public update(delta: number): void {
@@ -89,6 +93,12 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
                 this.setFrames(1)
                 break
             case "Q":
+                //this.swordSlash.play()
+                if (this.swordSlash.paused) {
+                    this.swordSlash.play();
+                }else{
+                    this.swordSlash.currentTime = 0
+                }
                 this.scale.set(5)
                 this.setFrames(3)
                 

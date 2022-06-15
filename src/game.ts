@@ -1,4 +1,4 @@
-import { destroyTextureCache } from "@pixi/utils"
+// import { destroyTextureCache } from "@pixi/utils"
 import * as PIXI from "pixi.js"
 import { Assets } from './asset'
 // import { FinnIdle } from './finnIdle'
@@ -12,6 +12,7 @@ import { Question} from "./question"
 
 
 export class Game {
+    // private assetLoader : Assets
     private finnTheHuman: FinnTheHuman
     // private finnIdle: FinnIdle
     private _pixi: PIXI.Application
@@ -105,9 +106,10 @@ export class Game {
         // qBoxSprite.addChild(vraag1)
 
         let frames: PIXI.Texture [][] = this.createFinnFrames()
-        this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
+        let sound = this.assetLoader.resources["swordSlash"].data!
+        this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50, sound)
 
-        
+        console.log(sound)
         
 
         

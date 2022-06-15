@@ -590,7 +590,11 @@ class Lobby {
     }
 }
 
+<<<<<<< HEAD
 },{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./game":"edeGs"}],"dsYej":[function(require,module,exports) {
+=======
+},{"pixi.js":"dsYej","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/startScreenBG.png":"78aQ2"}],"dsYej":[function(require,module,exports) {
+>>>>>>> 05a12d278b095ade9edc6db06f753127ed476df1
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37105,8 +37109,8 @@ function __extends(d, b) {
     return AnimatedSprite1;
 }(_sprite.Sprite);
 
-},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"78aQ2":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
+},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bZPng":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
@@ -37142,12 +37146,10 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"bZPng":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"2mljC":[function(require,module,exports) {
+},{}],"2mljC":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
 
+<<<<<<< HEAD
 },{"./helpers/bundle-url":"lgJ39"}],"edeGs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -37677,5 +37679,11 @@ class Question extends _pixiJs.Sprite {
 }
 
 },{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
+=======
+},{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
+>>>>>>> 05a12d278b095ade9edc6db06f753127ed476df1
 
 //# sourceMappingURL=index.83fbc3b8.js.map

@@ -590,11 +590,7 @@ class Lobby {
     }
 }
 
-<<<<<<< HEAD
-},{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./game":"edeGs"}],"dsYej":[function(require,module,exports) {
-=======
-},{"pixi.js":"dsYej","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/startScreenBG.png":"78aQ2"}],"dsYej":[function(require,module,exports) {
->>>>>>> 05a12d278b095ade9edc6db06f753127ed476df1
+},{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37109,8 +37105,8 @@ function __extends(d, b) {
     return AnimatedSprite1;
 }(_sprite.Sprite);
 
-},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bZPng":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
+},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"78aQ2":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
@@ -37146,10 +37142,12 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"2mljC":[function(require,module,exports) {
+},{}],"bZPng":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"2mljC":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
 
-<<<<<<< HEAD
 },{"./helpers/bundle-url":"lgJ39"}],"edeGs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -37177,34 +37175,6 @@ class Game {
         this._pixi.stage.addChild(backgroundSprite);
         let wormFrames = this.createWormFrames();
         this.worm = new _worm.Worm(this, wormFrames, 50, 50);
-        let question = new _question.Question(750, 300, "Wat is een divergente bewegin");
-        this._pixi.stage.addChild(question);
-        let heart = _pixiJs.Texture.from("heart");
-        let heartSprite = new _pixiJs.Sprite(heart);
-        this._pixi.stage.addChild(heartSprite);
-        heartSprite.scale.set(0.2);
-        heartSprite.x = 80;
-        heartSprite.y = 10;
-        let heart2 = _pixiJs.Texture.from("heart");
-        let heart2Sprite = new _pixiJs.Sprite(heart2);
-        this._pixi.stage.addChild(heart2Sprite);
-        heart2Sprite.scale.set(0.2);
-        heart2Sprite.x = 1080;
-        heart2Sprite.y = 10;
-        let OpponentImage = _pixiJs.Texture.from("FinnIdle1.png");
-        let OpponentImageSprite = new _pixiJs.Sprite(OpponentImage);
-        this._pixi.stage.addChild(OpponentImageSprite);
-        OpponentImageSprite.scale.set(6);
-        OpponentImageSprite.y = 70;
-        OpponentImageSprite.x = 35;
-        OpponentImageSprite.anchor.set(0.5);
-        let OpponentImage2 = _pixiJs.Texture.from("wormDie1.png");
-        let OpponentImageSprite2 = new _pixiJs.Sprite(OpponentImage2);
-        this._pixi.stage.addChild(OpponentImageSprite2);
-        OpponentImageSprite2.scale.set(7);
-        OpponentImageSprite2.y = 50;
-        OpponentImageSprite2.x = 1410;
-        OpponentImageSprite2.anchor.set(0.5);
         let frames = this.createFinnFrames();
         let sound = this.loader.resources["swordSlash"].data;
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50, sound);
@@ -37214,7 +37184,35 @@ class Game {
     update(delta) {
         if (this.collision(this.finnTheHuman, this.worm)) {
             console.log("player touches enemy 💀");
-            this.finnTheHuman.x = 100;
+            this.finnTheHuman.x = 600;
+            let question = new _question.Question(750, 300, "Wat is een divergente bewegin");
+            this._pixi.stage.addChild(question);
+            let heart = _pixiJs.Texture.from("heart");
+            let heartSprite = new _pixiJs.Sprite(heart);
+            this._pixi.stage.addChild(heartSprite);
+            heartSprite.scale.set(0.2);
+            heartSprite.x = 80;
+            heartSprite.y = 10;
+            let heart2 = _pixiJs.Texture.from("heart");
+            let heart2Sprite = new _pixiJs.Sprite(heart2);
+            this._pixi.stage.addChild(heart2Sprite);
+            heart2Sprite.scale.set(0.2);
+            heart2Sprite.x = 1080;
+            heart2Sprite.y = 10;
+            let OpponentImage = _pixiJs.Texture.from("FinnIdle1.png");
+            let OpponentImageSprite = new _pixiJs.Sprite(OpponentImage);
+            this._pixi.stage.addChild(OpponentImageSprite);
+            OpponentImageSprite.scale.set(6);
+            OpponentImageSprite.y = 70;
+            OpponentImageSprite.x = 35;
+            OpponentImageSprite.anchor.set(0.5);
+            let OpponentImage2 = _pixiJs.Texture.from("wormDie1.png");
+            let OpponentImageSprite2 = new _pixiJs.Sprite(OpponentImage2);
+            this._pixi.stage.addChild(OpponentImageSprite2);
+            OpponentImageSprite2.scale.set(7);
+            OpponentImageSprite2.y = 50;
+            OpponentImageSprite2.x = 1410;
+            OpponentImageSprite2.anchor.set(0.5);
         }
         this.finnTheHuman.update(delta);
     }
@@ -37679,11 +37677,5 @@ class Question extends _pixiJs.Sprite {
 }
 
 },{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
-=======
-},{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
->>>>>>> 05a12d278b095ade9edc6db06f753127ed476df1
 
 //# sourceMappingURL=index.83fbc3b8.js.map

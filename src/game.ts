@@ -1,10 +1,5 @@
-// import { destroyTextureCache } from "@pixi/utils"
 import * as PIXI from "pixi.js"
 import { Assets } from './asset'
-// import { FinnIdle } from './finnIdle'
-// import { FinnRun } from "./finnRun"
-// import { FinnDamage } from "./finnDamage"
-// import { FinnAttack } from "./FinnAttack"
 import { FinnTheHuman } from "./FinnTheHuman"
 import { HealthBar } from "./healthbar"
 import { Worm } from "./worm"
@@ -12,47 +7,23 @@ import { Question} from "./question"
 
 
 export class Game {
-    // private assetLoader : Assets
     private finnTheHuman: FinnTheHuman
-    // private finnIdle: FinnIdle
     private _pixi: PIXI.Application
-    // private finnRun: FinnRun
-    // private finnDamage: FinnDamage
-    // private finnAttack: FinnAttack
     background: PIXI.Texture
     private worm: Worm
     qBox: PIXI.Texture
     healthbar: HealthBar
-    loader: PIXI.Loader
-    
-    // loader: PIXI.Loader
-
-    
+    loader: Assets
 
     // Properties
     
     public get pixi(): PIXI.Application { return this._pixi }
 
-    constructor() {
+    constructor(pixi: PIXI.Application) {
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-        console.log("hoi")
-        // this._pixi = new PIXI.Application({ width: 1440, height: 900, backgroundColor: 0x1099bb })
-        this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
-        // this._pixi = new PIXI.Application({ 
-        //     width: window.innerWidth, 
-        //     height: window.innerHeight, 
-        //     resolution: devicePixelRatio  })
-        document.body.appendChild(this._pixi.view)
+        this._pixi = pixi
 
-    
-
-
-        let asset = new Assets(this)
-
-        // let loader = asset
-        // this.loader = asset
-        console.log(asset)
-         
+        this.loader = new Assets(this)
     }
 
     public loadCompleted() {
@@ -69,13 +40,6 @@ export class Game {
         
         let question = new Question(750,300,"Wat is een divergente bewegin")
         this._pixi.stage.addChild(question)
-        // this.healthbar = new HealthBar(300, 325, 100, 0xff0000, 0xff0000)
-        // this._pixi.stage.addChild(this.healthbar)
-        // this.healthbar.scale.set(20)
-
-        // this.healthbar = new HealthBar(1100, 325, 100, 0xff0000, 0xff0000)
-        // this._pixi.stage.addChild(this.healthbar)
-        // this.healthbar.scale.set(20)
 
         let heart = PIXI.Texture.from("heart")
         let heartSprite = new PIXI.Sprite(heart)
@@ -108,54 +72,10 @@ export class Game {
         OpponentImageSprite2.y = 50
         OpponentImageSprite2.x = 1410
         OpponentImageSprite2.anchor.set(0.5)
-        // let question2 = new Question(300, 300, "YOLO XD")
-        // this._pixi.stage.addChild(question2)
-        
-        // let question3 = new Question(800, 200, "hoe heet je")
-        // this._pixi.stage.addChild(question3)
-        // let qBox: PIXI.Texture = PIXI.Texture.from("textBox")
-        // let qBoxSprite = new PIXI.Sprite(qBox)
-        // this._pixi.stage.addChild(qBoxSprite)
-        // qBoxSprite.x = 700
-        // qBoxSprite.y = 100
-        // qBoxSprite.scale.set(2)
-        // qBoxSprite.anchor.set(0.5)
-
-        // let style = new PIXI.TextStyle({
-        //     fontFamily: "Arial",
-        //     fontSize: 12,
-        //     fontWeight: 'bold',
-        //     fill: '#00ff99',
-        //     align: "center"
-
-        
-        // })
-
-        // let vraag1 = new PIXI.Text('Wat is een divergente beweging', style);
-        // vraag1.x = 0
-        // vraag1.anchor.set(0.5)
-        // // vraag1.y = 100
-        // qBoxSprite.addChild(vraag1)
-
+      
         let frames: PIXI.Texture [][] = this.createFinnFrames()
-        let sound = this.assetLoader.resources["swordSlash"].data!
+        let sound = this.loader.resources["swordSlash"].data!
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50, sound)
-
-        console.log(sound)
-        
-
-        
-
-       
-        
-        // let frames = this.createFinnFrames()
-        // this.finnIdle = new FinnIdle(this, frames, 100, 100)
-        // let run = this.createFinnFrames2()
-        // this.finnRun = new FinnRun(this, run, 100, 100)
-        // let damage = this.createFinnFrames3()
-        // this.finnDamage = new FinnDamage(this, damage, 100, 100)
-        // let attack = this.createFinnFrames4()
-        // this.finnAttack = new FinnAttack(this, attack, 100, 100)
         
         this._pixi.ticker.add((delta: number) => this.update(delta))
        
@@ -166,10 +86,6 @@ export class Game {
             console.log("player touches enemy 💀")
             this.finnTheHuman.x = 100
         }
-        // this.finnIdle.update(delta)
-        // this.finnRun.update(delta)
-        // this.finnDamage.update(delta)
-        // this.finnAttack.update(delta)
         
         this.finnTheHuman.update(delta)
     }
@@ -254,32 +170,4 @@ export class Game {
             && bounds1.y + bounds1.height > bounds2.y;
     }
 
-    // private createFinnFrames2(): PIXI.Texture[]{
-    //     let run : PIXI.Texture[] = []
-    //     for(let i = 1; i<=7; i++){
-    //         run.push(PIXI.Texture.from(`FinnSpriteRun${i}.png`))
-    //     }
-    //     return run 
-    // }
-    
-    
-
-    // private createFinnFrames3(): PIXI.Texture[]{
-    //     let damage : PIXI.Texture[] = []
-
-    //     for(let i = 1; i<=3; i++){
-    //         damage.push(PIXI.Texture.from(`FinnDamage${i}.png`))
-    //     }
-    //     return damage
-    // }
-
-    // private createFinnFrames4(): PIXI.Texture[]{
-    //     let attack : PIXI.Texture[] = []
-    //     for(let i = 1; i<=5; i++){
-    //         attack.push(PIXI.Texture.from(`FinnAttack${i}.png`))
-    //     }
-    //     return attack
-    // }
 }
-
-new Game()

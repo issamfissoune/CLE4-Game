@@ -6,10 +6,6 @@ import { HealthBar } from './healthbar'
 
 export class FinnTheHuman extends PIXI.AnimatedSprite {
 
-    // private readonly gravity: number = 0.0981
-    // private readonly bounce: number = 0.985
-    // idle : PIXI.Texture[]
-    // run : PIXI.Texture[]
     private game: Game
     private speedX: number = 0
     // private speedY: number = 0

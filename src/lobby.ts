@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js"
 import background from "./images/startScreenBG.png"
 import buttonPicture from "./images/croppedbutton2.png"
 import buttonOnClick from "./images/croppedbuttonDown2.png"
+import { Game } from "./game"
 // import { Game } from "./game"
 // import { Assets } from './asset'
 
@@ -14,7 +15,7 @@ import buttonOnClick from "./images/croppedbuttonDown2.png"
     backgroundImage: PIXI.Sprite
     button: PIXI.Sprite
     button2: PIXI.Sprite
-    background: PIXI.Texture
+     backgroundSprite: PIXI.Sprite
     constructor() {
        
     
@@ -35,13 +36,9 @@ import buttonOnClick from "./images/croppedbuttonDown2.png"
 
     doneLoading(){
         let background : PIXI.Texture = PIXI.Texture.from("startScreenBG")
-        let backgroundSprite =  new PIXI.Sprite(background)
-        backgroundSprite.scale.set(0.75)
-        this.pixi.stage.addChild(backgroundSprite)
-
-        // this.pixi.stage.addChild(this.backgroundImage)
-        // this.backgroundImage.width = 900
-        // this.backgroundImage.height= 500
+        this.backgroundSprite =  new PIXI.Sprite(background)
+        this.backgroundSprite.scale.set(0.75)
+        this.pixi.stage.addChild(this.backgroundSprite)
 
       
         this.button = new PIXI.Sprite(this.loader.resources["buttonImage"].texture!)
@@ -62,17 +59,16 @@ import buttonOnClick from "./images/croppedbuttonDown2.png"
     }
 
     onButtonDown() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
         this.button.texture = this.loader.resources["buttonImageOnDown"].texture!
         console.log("working")
 
-        window.location.href = "game.html"
-        
+        this.button.destroy()
+        this.backgroundSprite.destroy()
+        new Game(this.pixi)
         
     }
 
     onButtonUp() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
         this.button.texture = this.loader.resources["buttonImage"].texture!
         console.log("working")
         
@@ -82,5 +78,3 @@ import buttonOnClick from "./images/croppedbuttonDown2.png"
     
 
 }
-
-// new Lobby()

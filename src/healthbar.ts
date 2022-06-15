@@ -26,7 +26,7 @@ export class HealthBar extends PIXI.Graphics {
 
     show() {
         this.lineStyle(1, this.borderColor)
-        this.beginFill(this.filter)
+        this.beginFill(0xff0000)
         this.drawRect(-13, -12, window.innerWidth * 0.02, 2);
         this.endFill()
     }

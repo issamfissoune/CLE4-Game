@@ -90,7 +90,7 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
                 break
             case "Q":
                 this.scale.set(5)
-                this.setFrames(2)
+                this.setFrames(3)
                 
                 // if(this.y > 0){
                 //    this.scale.set(-1, 4)

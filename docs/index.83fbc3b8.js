@@ -547,6 +547,7 @@ var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonD
 var _game = require("./game");
 class Lobby {
     constructor(){
+        _pixiJs.settings.SCALE_MODE = _pixiJs.SCALE_MODES.NEAREST;
         this.pixi = new _pixiJs.Application({
             width: window.innerWidth,
             height: window.innerHeight
@@ -568,8 +569,7 @@ class Lobby {
         this.button.x = 720;
         this.button.y = 400;
         this.pixi.stage.addChild(this.button);
-        this.button.scale.y = 3;
-        this.button.scale.x = 3;
+        this.button.scale.set(4);
         this.button.interactive = true;
         this.button.buttonMode = true;
         this.button.on('mousedown', ()=>this.onButtonDown()
@@ -590,7 +590,7 @@ class Lobby {
     }
 }
 
-},{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./game":"edeGs"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils

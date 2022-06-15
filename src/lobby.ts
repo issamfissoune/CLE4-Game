@@ -19,6 +19,7 @@ import { Game } from "./game"
     constructor() {
        
     
+        PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
         
         this.pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
@@ -46,8 +47,7 @@ import { Game } from "./game"
         this.button.x = 720
         this.button.y = 400
         this.pixi.stage.addChild(this.button)
-        this.button.scale.y = 3
-        this.button.scale.x = 3
+        this.button.scale.set(4)
         
         this.button.interactive = true;
         this.button.buttonMode = true;

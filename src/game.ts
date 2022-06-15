@@ -66,47 +66,7 @@ export class Game {
         let wormFrames: PIXI.Texture [] [] = this.createWormFrames()
         this.worm = new Worm(this, wormFrames, 50, 50)
         
-        let question = new Question(750,300,"Wat is een divergente bewegin")
-        this._pixi.stage.addChild(question)
-        // this.healthbar = new HealthBar(300, 325, 100, 0xff0000, 0xff0000)
-        // this._pixi.stage.addChild(this.healthbar)
-        // this.healthbar.scale.set(20)
-
-        // this.healthbar = new HealthBar(1100, 325, 100, 0xff0000, 0xff0000)
-        // this._pixi.stage.addChild(this.healthbar)
-        // this.healthbar.scale.set(20)
-
-        let heart = PIXI.Texture.from("heart")
-        let heartSprite = new PIXI.Sprite(heart)
-        this._pixi.stage.addChild(heartSprite)
-        heartSprite.scale.set(0.2)
-        heartSprite.x = 80
-        heartSprite.y = 10
-
-        let heart2 = PIXI.Texture.from("heart")
-        let heart2Sprite = new PIXI.Sprite(heart2)
-        this._pixi.stage.addChild(heart2Sprite)
-        heart2Sprite.scale.set(0.2)
-        heart2Sprite.x = 1080
-        heart2Sprite.y = 10
-
-       
-
-        let OpponentImage = PIXI.Texture.from("FinnIdle1.png")
-        let OpponentImageSprite = new PIXI.Sprite(OpponentImage)
-        this._pixi.stage.addChild(OpponentImageSprite)
-        OpponentImageSprite.scale.set(6)
-        OpponentImageSprite.y = 70
-        OpponentImageSprite.x = 35
-        OpponentImageSprite.anchor.set(0.5)
-
-        let OpponentImage2 = PIXI.Texture.from("wormDie1.png")
-        let OpponentImageSprite2 = new PIXI.Sprite(OpponentImage2)
-        this._pixi.stage.addChild(OpponentImageSprite2)
-        OpponentImageSprite2.scale.set(7)
-        OpponentImageSprite2.y = 50
-        OpponentImageSprite2.x = 1410
-        OpponentImageSprite2.anchor.set(0.5)
+        
         // let question2 = new Question(300, 300, "YOLO XD")
         // this._pixi.stage.addChild(question2)
         
@@ -129,6 +89,14 @@ export class Game {
 
         
         // })
+
+         // this.healthbar = new HealthBar(300, 325, 100, 0xff0000, 0xff0000)
+        // this._pixi.stage.addChild(this.healthbar)
+        // this.healthbar.scale.set(20)
+
+        // this.healthbar = new HealthBar(1100, 325, 100, 0xff0000, 0xff0000)
+        // this._pixi.stage.addChild(this.healthbar)
+        // this.healthbar.scale.set(20)
 
         // let vraag1 = new PIXI.Text('Wat is een divergente beweging', style);
         // vraag1.x = 0
@@ -162,7 +130,42 @@ export class Game {
     private update(delta: number) {
         if(this.collision(this.finnTheHuman, this.worm)){
             console.log("player touches enemy 💀")
-            this.finnTheHuman.x = 100
+            this.finnTheHuman.x = 600
+            let question = new Question(750,300,"Wat is een divergente bewegin")
+        this._pixi.stage.addChild(question)
+       
+
+        let heart = PIXI.Texture.from("heart")
+        let heartSprite = new PIXI.Sprite(heart)
+        this._pixi.stage.addChild(heartSprite)
+        heartSprite.scale.set(0.2)
+        heartSprite.x = 80
+        heartSprite.y = 10
+
+        let heart2 = PIXI.Texture.from("heart")
+        let heart2Sprite = new PIXI.Sprite(heart2)
+        this._pixi.stage.addChild(heart2Sprite)
+        heart2Sprite.scale.set(0.2)
+        heart2Sprite.x = 1080
+        heart2Sprite.y = 10
+
+       
+
+        let OpponentImage = PIXI.Texture.from("FinnIdle1.png")
+        let OpponentImageSprite = new PIXI.Sprite(OpponentImage)
+        this._pixi.stage.addChild(OpponentImageSprite)
+        OpponentImageSprite.scale.set(6)
+        OpponentImageSprite.y = 70
+        OpponentImageSprite.x = 35
+        OpponentImageSprite.anchor.set(0.5)
+
+        let OpponentImage2 = PIXI.Texture.from("wormDie1.png")
+        let OpponentImageSprite2 = new PIXI.Sprite(OpponentImage2)
+        this._pixi.stage.addChild(OpponentImageSprite2)
+        OpponentImageSprite2.scale.set(7)
+        OpponentImageSprite2.y = 50
+        OpponentImageSprite2.x = 1410
+        OpponentImageSprite2.anchor.set(0.5)
         }
         // this.finnIdle.update(delta)
         // this.finnRun.update(delta)

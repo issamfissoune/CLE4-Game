@@ -17,7 +17,7 @@ export class StartScreen {
 
         document.body.appendChild(this._pixi.view)
 
-        window.location.href=App.ts
+        
         
         let asset = new Assets(this)
 
@@ -50,8 +50,14 @@ export class StartScreen {
         
         this.texture
         this.texture = this.buttonDownSprite;
+
+        // this.playButtonSprite.texture = this.loader.resources["buttonImageOnDown"].texture!
+        console.log("working")
+
+        window.location.href = "game.html"
     }
 
 
 
 }
+

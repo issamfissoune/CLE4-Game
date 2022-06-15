@@ -559,6 +559,7 @@ class Game {
         //     resolution: devicePixelRatio  })
         document.body.appendChild(this._pixi.view);
         let asset = new _asset.Assets(this);
+        // let loader = asset
         // this.loader = asset
         console.log(asset);
     }
@@ -569,29 +570,37 @@ class Game {
         this._pixi.stage.addChild(backgroundSprite);
         let wormFrames = this.createWormFrames();
         this.worm = new _worm.Worm(this, wormFrames, 50, 50);
-        let qBox = _pixiJs.Texture.from("textBox");
-        let qBoxSprite = new _pixiJs.Sprite(qBox);
-        this._pixi.stage.addChild(qBoxSprite);
-        qBoxSprite.x = 700;
-        qBoxSprite.y = 100;
-        qBoxSprite.scale.set(2);
-        qBoxSprite.anchor.set(0.5);
-        let style = new _pixiJs.TextStyle({
-            fontFamily: "Arial",
-            fontSize: 12,
-            fontWeight: 'bold',
-            fill: '#00ff99',
-            align: "center"
-        });
-        let vraag1 = new _pixiJs.Text('Wat is een divergente beweging', style);
-        vraag1.x = 0;
-        vraag1.anchor.set(0.5);
-        // vraag1.y = 100
-        qBoxSprite.addChild(vraag1);
+        // let question2 = new Question(300, 300, "YOLO XD")
+        // this._pixi.stage.addChild(question2)
+        // let question3 = new Question(800, 200, "hoe heet je")
+        // this._pixi.stage.addChild(question3)
+        // let qBox: PIXI.Texture = PIXI.Texture.from("textBox")
+        // let qBoxSprite = new PIXI.Sprite(qBox)
+        // this._pixi.stage.addChild(qBoxSprite)
+        // qBoxSprite.x = 700
+        // qBoxSprite.y = 100
+        // qBoxSprite.scale.set(2)
+        // qBoxSprite.anchor.set(0.5)
+        // let style = new PIXI.TextStyle({
+        //     fontFamily: "Arial",
+        //     fontSize: 12,
+        //     fontWeight: 'bold',
+        //     fill: '#00ff99',
+        //     align: "center"
+        // })
+        // this.healthbar = new HealthBar(300, 325, 100, 0xff0000, 0xff0000)
+        // this._pixi.stage.addChild(this.healthbar)
+        // this.healthbar.scale.set(20)
+        // this.healthbar = new HealthBar(1100, 325, 100, 0xff0000, 0xff0000)
+        // this._pixi.stage.addChild(this.healthbar)
+        // this.healthbar.scale.set(20)
+        // let vraag1 = new PIXI.Text('Wat is een divergente beweging', style);
+        // vraag1.x = 0
+        // vraag1.anchor.set(0.5)
+        // // vraag1.y = 100
+        // qBoxSprite.addChild(vraag1)
         let frames = this.createFinnFrames();
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50);
-        let vraag = new _question.VraagBox(_pixiJs.Texture.from("textbBox"), 700, 100, 'test');
-        this.finnTheHuman.addChild(vraag);
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()
@@ -604,6 +613,38 @@ class Game {
         );
     }
     update(delta) {
+        if (this.collision(this.finnTheHuman, this.worm)) {
+            console.log("player touches enemy 💀");
+            this.finnTheHuman.x = 600;
+            let question = new _question.Question(750, 300, "Wat is een divergente bewegin");
+            this._pixi.stage.addChild(question);
+            let heart = _pixiJs.Texture.from("heart");
+            let heartSprite = new _pixiJs.Sprite(heart);
+            this._pixi.stage.addChild(heartSprite);
+            heartSprite.scale.set(0.2);
+            heartSprite.x = 80;
+            heartSprite.y = 10;
+            let heart2 = _pixiJs.Texture.from("heart");
+            let heart2Sprite = new _pixiJs.Sprite(heart2);
+            this._pixi.stage.addChild(heart2Sprite);
+            heart2Sprite.scale.set(0.2);
+            heart2Sprite.x = 1080;
+            heart2Sprite.y = 10;
+            let OpponentImage = _pixiJs.Texture.from("FinnIdle1.png");
+            let OpponentImageSprite = new _pixiJs.Sprite(OpponentImage);
+            this._pixi.stage.addChild(OpponentImageSprite);
+            OpponentImageSprite.scale.set(6);
+            OpponentImageSprite.y = 70;
+            OpponentImageSprite.x = 35;
+            OpponentImageSprite.anchor.set(0.5);
+            let OpponentImage2 = _pixiJs.Texture.from("wormDie1.png");
+            let OpponentImageSprite2 = new _pixiJs.Sprite(OpponentImage2);
+            this._pixi.stage.addChild(OpponentImageSprite2);
+            OpponentImageSprite2.scale.set(7);
+            OpponentImageSprite2.y = 50;
+            OpponentImageSprite2.x = 1410;
+            OpponentImageSprite2.anchor.set(0.5);
+        }
         // this.finnIdle.update(delta)
         // this.finnRun.update(delta)
         // this.finnDamage.update(delta)
@@ -648,9 +689,15 @@ class Game {
             deathWorm
         ];
     }
+    collision(sprite1, sprite2) {
+        const bounds1 = sprite1.getBounds();
+        const bounds2 = sprite2.getBounds();
+        return bounds1.x < bounds2.x + bounds2.width && bounds1.x + bounds1.width > bounds2.x && bounds1.y < bounds2.y + bounds2.height && bounds1.y + bounds1.height > bounds2.y;
+    }
 }
+new Game();
 
-},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","./worm":"3nqFj","./question":"4knq6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./worm":"3nqFj","./question":"4knq6"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37184,6 +37231,12 @@ var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
 var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
 var _textBoxPng = require("./images/textBox.png");
 var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
+var _dirtPng = require("./images/dirt.png");
+var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
+var _vs2Png = require("./images/vs2.png");
+var _vs2PngDefault = parcelHelpers.interopDefault(_vs2Png);
+var _heartHealthPng = require("./images/heartHealth.png");
+var _heartHealthPngDefault = parcelHelpers.interopDefault(_heartHealthPng);
 class Assets extends _pixiJs.Loader {
     // private game: Game
     assets = [];
@@ -37227,6 +37280,18 @@ class Assets extends _pixiJs.Loader {
             {
                 name: "textBox",
                 url: _textBoxPngDefault.default
+            },
+            {
+                name: "dirt",
+                url: _dirtPngDefault.default
+            },
+            {
+                name: "versus",
+                url: _vs2PngDefault.default
+            },
+            {
+                name: "heart",
+                url: _heartHealthPngDefault.default
             }, 
         ];
         this.assets.forEach((asset)=>{
@@ -37245,7 +37310,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","./images/City2.png":"d1b1P","./images/City1.png":"eLDX9","./images/textBox.png":"7DvR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/startScreenBG.png":"eB5nT","./images/croppedbutton2.png":"eOQpn","./images/croppedbuttonDown2.png":"kWUZt"}],"d1b1P":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City2.png":"d1b1P","./images/City1.png":"eLDX9","./images/startScreenBG.png":"eB5nT","./images/textBox.png":"7DvR6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/croppedbutton2.png":"eOQpn","./images/croppedbuttonDown2.png":"kWUZt","./images/dirt.png":"dU0uC","./images/vs2.png":"lq1Kp","./images/heartHealth.png":"34Fa7"}],"d1b1P":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "City2.c31409ee.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37285,17 +37350,26 @@ exports.getOrigin = getOrigin;
 },{}],"eLDX9":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "City1.e72cac9e.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}],"7DvR6":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "textBox.8dbb072c.png" + "?" + Date.now();
-
 },{"./helpers/bundle-url":"lgJ39"}],"eB5nT":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"7DvR6":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "textBox.8dbb072c.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"eOQpn":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "croppedbutton2.92544551.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"kWUZt":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"dU0uC":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "dirt.d2ffe5eb.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lq1Kp":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "vs2.cc9f49e2.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"34Fa7":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('emE5o') + "heartHealth.a4d01e8b.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"9oUG7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -37374,7 +37448,7 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
                 break;
             case "Q":
                 this.scale.set(5);
-                this.setFrames(2);
+                this.setFrames(3);
         }
     }
     onKeyUp(e) {
@@ -37434,7 +37508,7 @@ class HealthBar extends _pixiJs.Graphics {
     }
     show() {
         this.lineStyle(1, this.borderColor);
-        this.beginFill(this.filter);
+        this.beginFill(0xff0000);
         this.drawRect(-13, -12, window.innerWidth * 0.02, 2);
         this.endFill();
     }
@@ -37447,6 +37521,7 @@ parcelHelpers.export(exports, "Worm", ()=>Worm
 );
 var _pixiJs = require("pixi.js");
 var _healthbar = require("./healthbar");
+var _asset = require("./asset");
 class Worm extends _pixiJs.AnimatedSprite {
     speedX = 0;
     // private speedY: number = 0
@@ -37459,7 +37534,8 @@ class Worm extends _pixiJs.AnimatedSprite {
         /*
          * An AnimatedSprite inherits all the properties of a PIXI sprite
          * so you can change its position, its anchor, mask it, etc
-         */ this.x = 500;
+         */ let asset = new _asset.Assets(this);
+        this.x = 1200;
         this.y = 600;
         this.scale.set(5);
         this.animationSpeed = 0.06;
@@ -37474,6 +37550,13 @@ class Worm extends _pixiJs.AnimatedSprite {
         );
         this.healthbar = new _healthbar.HealthBar(0, 0, 100, 0x00FF00, 0xff0000);
         this.addChild(this.healthbar);
+    // let dirt : PIXI.Sprite = PIXI.Sprite.from("dirt")
+    // let dirtSprite =  dirt
+    // dirtSprite.scale.set(1)
+    // this.addChild(dirtSprite)
+    // dirtSprite.anchor.set(0.2)
+    // dirtSprite.x = this.x
+    // dirtSprite.y = this.y
     }
     update(delta) {
         super.update(delta);
@@ -37545,7 +37628,7 @@ class Worm extends _pixiJs.AnimatedSprite {
     }
 }
 
-},{"pixi.js":"dsYej","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./healthbar":"dInwI","./asset":"cIMAM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Question", ()=>Question

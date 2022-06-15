@@ -526,51 +526,75 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"kuM8f":[function(require,module,exports) {
-var _startScreen = require("./startScreen");
+var _lobby = require("./lobby");
 // new Game()
-new _startScreen.StartScreen();
+// new StartScreen()
+new _lobby.Lobby();
 
-},{"./startScreen":"3JdQz"}],"3JdQz":[function(require,module,exports) {
+},{"./lobby":"24bIG"}],"24bIG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "StartScreen", ()=>StartScreen
-);
+// import { Game } from "./game"
+// import { Assets } from './asset'
+parcelHelpers.export(exports, "Lobby", ()=>Lobby
+) // new Lobby()
+;
 var _pixiJs = require("pixi.js");
-var _asset = require("./asset");
-class StartScreen {
-    buttonDownSprite = _pixiJs.Texture.from("croppedbuttonDown2");
+var _startScreenBGPng = require("./images/startScreenBG.png");
+var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
+var _croppedbutton2Png = require("./images/croppedbutton2.png");
+var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
+var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
+var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
+class Lobby {
     constructor(){
-        _pixiJs.settings.SCALE_MODE = _pixiJs.SCALE_MODES.NEAREST;
-        this._pixi = new _pixiJs.Application({
+        this.pixi = new _pixiJs.Application({
             width: window.innerWidth,
             height: window.innerHeight
         });
-        document.body.appendChild(this._pixi.view);
-        window.location.href = App.ts;
-        let asset = new _asset.Assets(this);
+        document.body.appendChild(this.pixi.view);
+        // let asset = new Assets(this)
+        this.loader = new _pixiJs.Loader();
+        this.loader.add("startScreenBG", _startScreenBGPngDefault.default).add("buttonImage", _croppedbutton2PngDefault.default).add("buttonImageOnDown", _croppedbuttonDown2PngDefault.default);
+        this.loader.load(()=>this.doneLoading()
+        );
     }
-    loadCompleted() {
+    doneLoading() {
         let background = _pixiJs.Texture.from("startScreenBG");
         let backgroundSprite = new _pixiJs.Sprite(background);
-        backgroundSprite.scale.set(1);
-        this._pixi.stage.addChild(backgroundSprite);
-        let playButton = _pixiJs.Texture.from("croppedbutton2");
-        let playButtonDown = _pixiJs.Texture.from("croppedbuttonDown2");
-        let playButtonSprite = new _pixiJs.Sprite(playButton);
-        playButtonSprite.anchor.set(0.5);
-        playButtonSprite.x = backgroundSprite.width * 0.5;
-        playButtonSprite.y = backgroundSprite.height * 0.5;
-        playButtonSprite.scale.set(5);
-        playButtonSprite.on('pointerdown', this.onButtonDown);
-        this._pixi.stage.addChild(playButtonSprite);
+        backgroundSprite.scale.set(0.75);
+        this.pixi.stage.addChild(backgroundSprite);
+        // this.pixi.stage.addChild(this.backgroundImage)
+        // this.backgroundImage.width = 900
+        // this.backgroundImage.height= 500
+        this.button = new _pixiJs.Sprite(this.loader.resources["buttonImage"].texture);
+        this.button.anchor.set(0.5);
+        this.button.x = 720;
+        this.button.y = 400;
+        this.pixi.stage.addChild(this.button);
+        this.button.scale.y = 3;
+        this.button.scale.x = 3;
+        this.button.interactive = true;
+        this.button.buttonMode = true;
+        this.button.on('mousedown', ()=>this.onButtonDown()
+        );
+        this.button.on('mouseup', ()=>this.onButtonUp()
+        );
     }
     onButtonDown() {
-        this.texture;
-        this.texture = this.buttonDownSprite;
+        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
+        this.button.texture = this.loader.resources["buttonImageOnDown"].texture;
+        console.log("working");
+        window.location.href = "game.html";
+    }
+    onButtonUp() {
+        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
+        this.button.texture = this.loader.resources["buttonImage"].texture;
+        console.log("working");
     }
 }
 
-},{"pixi.js":"dsYej","./asset":"cIMAM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/startScreenBG.png":"78aQ2"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37085,88 +37109,8 @@ function __extends(d, b) {
     return AnimatedSprite1;
 }(_sprite.Sprite);
 
-},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cIMAM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Assets", ()=>Assets
-);
-var _pixiJs = require("pixi.js");
-// import { Game } from './game'
-var _city2Png = require("./images/City2.png");
-var _city2PngDefault = parcelHelpers.interopDefault(_city2Png);
-var _city1Png = require("./images/City1.png");
-var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
-var _startScreenBGPng = require("./images/startScreenBG.png");
-var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
-var _croppedbutton2Png = require("./images/croppedbutton2.png");
-var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
-var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
-var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
-var _textBoxPng = require("./images/textBox.png");
-var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
-class Assets extends _pixiJs.Loader {
-    // private game: Game
-    assets = [];
-    constructor(game){
-        super();
-        // this.game = game
-        console.log("hi");
-        this.assets = [
-            // {name: "finn_idle", url: "finnIdle.json" },
-            // {name: "finn_run", url:"finnRun.json"},
-            // {name: "finn_damage", url: "FinnDamage.json"},
-            // {name: "finn_attack", url: "FinnAttack.json"},
-            {
-                name: "croppedbutton2",
-                url: _croppedbutton2PngDefault.default
-            },
-            {
-                name: "croppedbuttonDown2",
-                url: _croppedbuttonDown2PngDefault.default
-            },
-            {
-                name: "backgroundImage",
-                url: _city1PngDefault.default
-            },
-            {
-                name: "All_Moves",
-                url: "FinnCompleteSheet.json"
-            },
-            {
-                name: "city2",
-                url: _city2PngDefault.default
-            },
-            {
-                name: "startScreenBG",
-                url: _startScreenBGPngDefault.default
-            },
-            {
-                name: "worm",
-                url: "wormSpritesheet.json"
-            },
-            {
-                name: "textBox",
-                url: _textBoxPngDefault.default
-            }, 
-        ];
-        this.assets.forEach((asset)=>{
-            this.add(asset.name, asset.url);
-        });
-        this.onError.add((arg)=>{
-            console.error(arg);
-        });
-        this.onProgress.add((loader)=>this.showProgress(loader)
-        );
-        this.load(()=>game.loadCompleted()
-        );
-    }
-    showProgress(loader) {
-        console.log(`Loading ${loader.progress}%`);
-    }
-}
-
-},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/textBox.png":"EDVpg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC"}],"gJfU4":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
+},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bZPng":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
@@ -37202,20 +37146,11 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"hK38Y":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"EDVpg":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "textBox.8dbb072c.png" + "?" + Date.now();
+},{}],"2mljC":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"bZPng":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"2mljC":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
 

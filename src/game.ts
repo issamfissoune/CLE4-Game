@@ -8,10 +8,11 @@ import { Assets } from './asset'
 import { FinnTheHuman } from "./FinnTheHuman"
 import { HealthBar } from "./healthbar"
 import { Worm } from "./worm"
-import { VraagBox } from "./question"
+import { Question } from "./question"
 
 
 export class Game {
+    private assetLoader : Assets
     private finnTheHuman: FinnTheHuman
     // private finnIdle: FinnIdle
     private _pixi: PIXI.Application
@@ -21,7 +22,7 @@ export class Game {
     background: PIXI.Texture
     private worm: Worm
     qBox: PIXI.Texture
-    private vraagBox : VraagBox
+    private vraagBox : Question
     
     // loader: PIXI.Loader
 
@@ -45,12 +46,9 @@ export class Game {
     
 
 
-        let asset = new Assets(this)
-
+        this.assetLoader = new Assets(this)
+        
       
-        // this.loader = asset
-        console.log(asset)
-         
     }
 
     public loadCompleted() {
@@ -81,6 +79,8 @@ export class Game {
         
         })
 
+        
+
         let vraag1 = new PIXI.Text('Wat is een divergente beweging', style);
         vraag1.x = 0
         vraag1.anchor.set(0.5)
@@ -88,15 +88,16 @@ export class Game {
         qBoxSprite.addChild(vraag1)
 
         let frames: PIXI.Texture [][] = this.createFinnFrames()
-        this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50)
+        let sound = this.assetLoader.resources["swordSlash"].data!
+        this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50, sound)
+
+        console.log(sound)
+        
 
         
-        
 
-        
-
-        let vraag =new VraagBox(PIXI.Texture.from("textbBox"), 700, 100, 'test')
-        this.finnTheHuman.addChild(vraag)
+        //let vraag =new Question(PIXI.Texture.from("textbBox"), 700, 100)
+        //this.finnTheHuman.addChild(vraag)
         // let frames = this.createFinnFrames()
         // this.finnIdle = new FinnIdle(this, frames, 100, 100)
         // let run = this.createFinnFrames2()

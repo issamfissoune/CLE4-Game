@@ -4,6 +4,8 @@ import * as PIXI from 'pixi.js'
 // import { Game } from './game'
 import backgroundImage2 from './images/City2.png'
 
+
+
 import { Game } from './game'
 import backgroundImage from './images/City1.png'
 import { StartScreen } from './startScreen'
@@ -11,6 +13,7 @@ import startScreenBG from './images/startScreenBG.png'
 import croppedbutton2 from './images/croppedbutton2.png'
 import croppedbuttonDown2 from './images/croppedbuttonDown2.png'
 import textBox from './images/textBox.png'
+import swordSlash from 'url:./sounds/swordSlash.mp3'
 
 
 // json bestand moet in de static map omdat de pixi loader de json inleest en interpreteert
@@ -34,6 +37,7 @@ export class Assets extends PIXI.Loader {
             // {name: "finn_run", url:"finnRun.json"},
             // {name: "finn_damage", url: "FinnDamage.json"},
             // {name: "finn_attack", url: "FinnAttack.json"},
+            {name : "swordSlash", url : swordSlash },
             {name : "croppedbutton2", url: croppedbutton2 },
             {name : "croppedbuttonDown2", url: croppedbuttonDown2 },
             {name: "backgroundImage", url: backgroundImage},

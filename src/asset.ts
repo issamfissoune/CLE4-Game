@@ -11,6 +11,9 @@ import startScreenBG from './images/startScreenBG.png'
 import croppedbutton2 from './images/croppedbutton2.png'
 import croppedbuttonDown2 from './images/croppedbuttonDown2.png'
 import textBox from './images/textBox.png'
+import dirt from './images/dirt.png'
+import versus from './images/vs2.png'
+import heart from "./images/heartHealth.png"
 
 
 // json bestand moet in de static map omdat de pixi loader de json inleest en interpreteert
@@ -42,6 +45,9 @@ export class Assets extends PIXI.Loader {
             {name: "startScreenBG", url: startScreenBG},
             {name: "worm", url: "wormSpritesheet.json"},
             {name: "textBox", url:textBox},
+            {name: "dirt", url: dirt},
+            {name: "versus", url: versus},
+            {name: "heart", url: heart},
             
         ]
 

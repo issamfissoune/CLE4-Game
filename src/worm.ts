@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js'
 import { Game } from './game'
 import { HealthBar } from './healthbar'
+import { Assets } from './asset'
 
 export class Worm extends PIXI.AnimatedSprite {
 
@@ -14,6 +15,7 @@ export class Worm extends PIXI.AnimatedSprite {
     private frames: PIXI.Texture[][] = []
     private previousFrame: number = -1
     private healthbar: HealthBar
+    private
 
     constructor(game: Game, textures: PIXI.Texture[][], x: number, y: number,) {
         super(textures[0])
@@ -24,7 +26,8 @@ export class Worm extends PIXI.AnimatedSprite {
          * so you can change its position, its anchor, mask it, etc
          */
 
-        this.x = 500
+        let asset = new Assets(this)
+        this.x = 1200
         this.y = 600
         this.scale.set(5)
         this.animationSpeed = 0.06;
@@ -40,6 +43,16 @@ export class Worm extends PIXI.AnimatedSprite {
         
         this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
         this.addChild(this.healthbar)
+
+        // let dirt : PIXI.Sprite = PIXI.Sprite.from("dirt")
+        // let dirtSprite =  dirt
+        // dirtSprite.scale.set(1)
+    
+        // this.addChild(dirtSprite)
+        // dirtSprite.anchor.set(0.2)
+        
+        // dirtSprite.x = this.x
+        // dirtSprite.y = this.y
 
     }
 

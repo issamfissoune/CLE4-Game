@@ -15,7 +15,9 @@ import { Game } from "./game"
     backgroundImage: PIXI.Sprite
     button: PIXI.Sprite
     button2: PIXI.Sprite
-     backgroundSprite: PIXI.Sprite
+    backgroundSprite: PIXI.Sprite
+
+
     constructor() {
        
     

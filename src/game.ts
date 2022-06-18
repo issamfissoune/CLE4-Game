@@ -11,9 +11,13 @@ export class Game {
     private _pixi: PIXI.Application
     background: PIXI.Texture
     private worm: Worm
+    private heart: PIXI.Sprite;
     qBox: PIXI.Texture
     healthbar: HealthBar
     loader: Assets
+
+    finHP: PIXI.Sprite[] = []
+    wormHP: PIXI.Sprite[] = []
 
     // Properties
     
@@ -55,21 +59,30 @@ export class Game {
             this.finnTheHuman.x = 600
             let question = new Question(750,300,"Wat is een divergente bewegin")
         this._pixi.stage.addChild(question)
-       
 
-        let heart = PIXI.Texture.from("heart")
-        let heartSprite = new PIXI.Sprite(heart)
-        this._pixi.stage.addChild(heartSprite)
-        heartSprite.scale.set(0.2)
-        heartSprite.x = 80
-        heartSprite.y = 10
+        for(let i = 0; i<3; i++){
+            this.heart = new PIXI.Sprite(this.loader.resources["heart"].texture!)
+            this.heart.scale.set(0.2)
+            this.heart.x = 80 * i + 100
+            this.heart.y = 20
+            this.finHP.push(this.heart)
+            this.pixi.stage.addChild(this.heart)
 
-        let heart2 = PIXI.Texture.from("heart")
-        let heart2Sprite = new PIXI.Sprite(heart2)
-        this._pixi.stage.addChild(heart2Sprite)
-        heart2Sprite.scale.set(0.2)
-        heart2Sprite.x = 1080
-        heart2Sprite.y = 10
+            if(this.collision(this.heart, this.finHP[i])){
+                this.finHP[i].destroy();
+                this.finHP = this.finHP.filter(fi => fi != this.finHP[i]);
+                // this.keyboardFish.playSound();
+            }
+        }
+
+        for(let i = 0; i<3; i++){
+            this.heart = new PIXI.Sprite(this.loader.resources["heart"].texture!)
+            this.heart.scale.set(0.2)
+            this.heart.x = 80 * i + 1115
+            this.heart.y = 20
+            this.wormHP.push(this.heart)
+            this.pixi.stage.addChild(this.heart)
+        }
 
        
 

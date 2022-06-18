@@ -590,7 +590,7 @@ class Lobby {
     }
 }
 
-},{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./game":"edeGs"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37159,6 +37159,8 @@ var _finnTheHuman = require("./FinnTheHuman");
 var _worm = require("./worm");
 var _question = require("./question");
 class Game {
+    finHP = [];
+    wormHP = [];
     // Properties
     get pixi() {
         return this._pixi;
@@ -37187,18 +37189,28 @@ class Game {
             this.finnTheHuman.x = 600;
             let question = new _question.Question(750, 300, "Wat is een divergente bewegin");
             this._pixi.stage.addChild(question);
-            let heart = _pixiJs.Texture.from("heart");
-            let heartSprite = new _pixiJs.Sprite(heart);
-            this._pixi.stage.addChild(heartSprite);
-            heartSprite.scale.set(0.2);
-            heartSprite.x = 80;
-            heartSprite.y = 10;
-            let heart2 = _pixiJs.Texture.from("heart");
-            let heart2Sprite = new _pixiJs.Sprite(heart2);
-            this._pixi.stage.addChild(heart2Sprite);
-            heart2Sprite.scale.set(0.2);
-            heart2Sprite.x = 1080;
-            heart2Sprite.y = 10;
+            for(let i = 0; i < 3; i++){
+                this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
+                this.heart.scale.set(0.2);
+                this.heart.x = 80 * i + 100;
+                this.heart.y = 20;
+                this.finHP.push(this.heart);
+                this.pixi.stage.addChild(this.heart);
+                if (this.collision(this.heart, this.finHP[i])) {
+                    this.finHP[i].destroy();
+                    this.finHP = this.finHP.filter((fi)=>fi != this.finHP[i]
+                    );
+                // this.keyboardFish.playSound();
+                }
+            }
+            for(let i1 = 0; i1 < 3; i1++){
+                this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
+                this.heart.scale.set(0.2);
+                this.heart.x = 80 * i1 + 1115;
+                this.heart.y = 20;
+                this.wormHP.push(this.heart);
+                this.pixi.stage.addChild(this.heart);
+            }
             let OpponentImage = _pixiJs.Texture.from("FinnIdle1.png");
             let OpponentImageSprite = new _pixiJs.Sprite(OpponentImage);
             this._pixi.stage.addChild(OpponentImageSprite);
@@ -37225,10 +37237,10 @@ class Game {
         let death = [];
         for(let i = 1; i <= 9; i++)// magically works since the spritesheet was loaded with the pixi loader
         idle.push(_pixiJs.Texture.from(`FinnIdle${i}.png`));
-        for(let i1 = 1; i1 <= 7; i1++)run.push(_pixiJs.Texture.from(`FinnSpriteRun${i1}.png`));
-        for(let i2 = 1; i2 <= 3; i2++)damage.push(_pixiJs.Texture.from(`FinnDamage${i2}.png`));
-        for(let i3 = 1; i3 <= 5; i3++)attack.push(_pixiJs.Texture.from(`FinnAttack${i3}.png`));
-        for(let i4 = 1; i4 <= 5; i4++)death.push(_pixiJs.Texture.from(`FinnDead${i4}.png`));
+        for(let i2 = 1; i2 <= 7; i2++)run.push(_pixiJs.Texture.from(`FinnSpriteRun${i2}.png`));
+        for(let i3 = 1; i3 <= 3; i3++)damage.push(_pixiJs.Texture.from(`FinnDamage${i3}.png`));
+        for(let i4 = 1; i4 <= 5; i4++)attack.push(_pixiJs.Texture.from(`FinnAttack${i4}.png`));
+        for(let i5 = 1; i5 <= 5; i5++)death.push(_pixiJs.Texture.from(`FinnDead${i5}.png`));
         return [
             idle,
             run,
@@ -37244,9 +37256,9 @@ class Game {
         let deathWorm = [];
         for(let i = 1; i <= 8; i++)// magically works since the spritesheet was loaded with the pixi loader
         idleWorm.push(_pixiJs.Texture.from(`WormIdle${i}.png`));
-        for(let i5 = 1; i5 <= 4; i5++)damageWorm.push(_pixiJs.Texture.from(`wormDamage${i5}.png`));
-        for(let i6 = 1; i6 <= 8; i6++)jumpWorm.push(_pixiJs.Texture.from(`wormJump${i6}.png`));
-        for(let i7 = 1; i7 <= 6; i7++)deathWorm.push(_pixiJs.Texture.from(`wormDie${i7}.png`));
+        for(let i6 = 1; i6 <= 4; i6++)damageWorm.push(_pixiJs.Texture.from(`wormDamage${i6}.png`));
+        for(let i7 = 1; i7 <= 8; i7++)jumpWorm.push(_pixiJs.Texture.from(`wormJump${i7}.png`));
+        for(let i8 = 1; i8 <= 6; i8++)deathWorm.push(_pixiJs.Texture.from(`wormDie${i8}.png`));
         return [
             idleWorm,
             damageWorm,

@@ -1,9 +1,9 @@
 import * as PIXI from "pixi.js"
-import { Assets } from './asset'
 import { FinnTheHuman } from "./FinnTheHuman"
 import { HealthBar } from "./healthbar"
 import { Worm } from "./worm"
 import { Question} from "./question"
+import { Possibility } from "./possibility"
 
 
 export class Game {
@@ -13,26 +13,32 @@ export class Game {
     private worm: Worm
     qBox: PIXI.Texture
     healthbar: HealthBar
-    loader: Assets
+    loader: PIXI.Loader
 
     // Properties
     
     public get pixi(): PIXI.Application { return this._pixi }
 
-    constructor(pixi: PIXI.Application) {
+    constructor(pixi: PIXI.Application, loader: PIXI.Loader) {
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         this._pixi = pixi
 
-        this.loader = new Assets(this)
+        this.loader = loader
+
+        this.init()
     }
 
-    public loadCompleted() {
+    public init() {
         let background : PIXI.Texture = PIXI.Texture.from("city2")
         let backgroundSprite =  new PIXI.Sprite(background)
         backgroundSprite.scale.set(0.75)
         this._pixi.stage.addChild(backgroundSprite)
 
         
+        let antwoord1 = new Possibility(200, 200 ,"Dit is het antwoord", false)
+        let antwoord2 = new Possibility(0, 0, "b", true)
+        this._pixi.stage.addChild(antwoord1, antwoord2)
+
 
 
         let wormFrames: PIXI.Texture [] [] = this.createWormFrames()
@@ -88,7 +94,17 @@ export class Game {
         OpponentImageSprite2.y = 50
         OpponentImageSprite2.x = 1410
         OpponentImageSprite2.anchor.set(0.5)
-        }
+        
+        let versus = PIXI.Texture.from("versus")
+        let versusSprite = new PIXI.Sprite(versus)
+        this._pixi.stage.addChild(versusSprite)
+        versusSprite.x = 500
+        versusSprite.y = 100
+       
+    
+    }
+
+       
         
         this.finnTheHuman.update(delta)
     }

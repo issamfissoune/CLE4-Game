@@ -1,21 +1,16 @@
 import * as PIXI from 'pixi.js'
 import { Game } from './game'
 import { HealthBar } from './healthbar'
-import { Assets } from './asset'
 
 export class Worm extends PIXI.AnimatedSprite {
 
-    // private readonly gravity: number = 0.0981
-    // private readonly bounce: number = 0.985
-    // idle : PIXI.Texture[]
-    // run : PIXI.Texture[]
+   
     private game: Game
     private speedX: number = 0
-    // private speedY: number = 0
     private frames: PIXI.Texture[][] = []
     private previousFrame: number = -1
     private healthbar: HealthBar
-    private
+   
 
     constructor(game: Game, textures: PIXI.Texture[][], x: number, y: number,) {
         super(textures[0])
@@ -26,7 +21,6 @@ export class Worm extends PIXI.AnimatedSprite {
          * so you can change its position, its anchor, mask it, etc
          */
 
-        let asset = new Assets(this)
         this.x = 1200
         this.y = 600
         this.scale.set(5)

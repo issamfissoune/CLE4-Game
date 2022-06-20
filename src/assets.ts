@@ -1,15 +1,6 @@
 import * as PIXI from 'pixi.js'
-
-
-// import { Game } from './game'
 import backgroundImage2 from './images/City2.png'
-
-
-
-import { Game } from './game'
 import backgroundImage from './images/City1.png'
-import { StartScreen } from './startScreen'
-import startScreenBG from './images/startScreenBG.png'
 import croppedbutton2 from './images/croppedbutton2.png'
 import croppedbuttonDown2 from './images/croppedbuttonDown2.png'
 import textBox from './images/textBox.png'
@@ -17,12 +8,9 @@ import swordSlash from 'url:./sounds/swordSlash.mp3'
 import dirt from './images/dirt.png'
 import versus from './images/vs2.png'
 import heart from "./images/heartHealth.png"
-
-
-// json bestand moet in de static map omdat de pixi loader de json inleest en interpreteert
-// spritesheet png moet in de static map omdat de pixi loader niet de dynamische bestandsnaam kan gebruiken
-// bestanden die niet in de static map staan kan je als volgt importeren
-// import catImage from "./images/cat_39.png"
+import cBackground from "./images/CharacterBackgrund.png"
+import background from "./images/startScreenBG.png"
+import { Lobby } from './lobby'
 
 type AssetFile = { name: string, url: string }
 
@@ -31,7 +19,7 @@ export class Assets extends PIXI.Loader {
     // private game: Game
     private assets: AssetFile[] = []
 
-    constructor(game: Game) {
+    constructor(lobby: Lobby) {
         super()
         // this.game = game
         console.log("hi")
@@ -46,14 +34,15 @@ export class Assets extends PIXI.Loader {
             {name: "backgroundImage", url: backgroundImage},
             {name: "All_Moves", url: "FinnCompleteSheet.json"},
             {name: "city2", url: backgroundImage2},
-            {name: "startScreenBG", url: startScreenBG},
             {name: "worm", url: "wormSpritesheet.json"},
             {name: "textBox", url:textBox},
             {name: "dirt", url: dirt},
             {name: "versus", url: versus},
             {name: "heart", url: heart},
+            {name: "cBackground", url: cBackground},
+            {name: "startScreenBG", url: background},
             
-        ]
+        ] 
 
         this.assets.forEach(asset => {
             this.add(asset.name, asset.url)
@@ -61,7 +50,7 @@ export class Assets extends PIXI.Loader {
 
         this.onError.add((arg) => { console.error(arg) })
         this.onProgress.add((loader) => this.showProgress(loader))
-        this.load(() => game.loadCompleted())
+        this.load(() => lobby.doneLoading())
     }
 
     private showProgress(loader) {

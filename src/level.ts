@@ -1,6 +1,5 @@
 import * as PIXI from "pixi.js"
 import { Application } from "pixi.js"
-import { Assets } from './asset'
 
 export class Level {
 
@@ -16,12 +15,6 @@ export class Level {
         this._pixi = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
 
         document.body.appendChild(this._pixi.view)
-
-        //window.location.href=App.ts
-        
-        let asset = new Assets(this)
-
-        //asset
     }
 
     public loadCompleted() {

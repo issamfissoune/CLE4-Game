@@ -1,6 +1,4 @@
 import * as PIXI from 'pixi.js'
-import { Assets } from './asset'
-
 import { Game } from './game'
 import { HealthBar } from './healthbar'
 
@@ -47,29 +45,11 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
         super.update(delta)
         this.x += this.speedX * delta
 
-        // this.fall(delta)
-        // this.keepInScreen()
+       
     }
 
-    // private fall(delta): void {
-    //     this.x += this.speedX * delta
-    //     this.y += this.speedY * delta
-    //     this.speedY += this.gravity
-    // }
+    
 
-    // private keepInScreen() {
-    //     if (this.getBounds().left < 0) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.left
-    //     }
-    //     if (this.getBounds().right > this.game.pixi.screen.right) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.right - this.width
-    //     }
-    //     if (this.getBounds().bottom > this.game.pixi.screen.bottom) {
-    //         this.y =this.game.pixi.screen.bottom - this.height
-    //     }
-    // }
 
     onKeyDown(e: KeyboardEvent): any {
 
@@ -98,11 +78,7 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
                 this.scale.set(5)
                 this.setFrames(3)
                 
-                // if(this.y > 0){
-                //    this.scale.set(-1, 4)
-                // } else{
-                //     this.scale.set(4,4)
-                // }
+        
         }
     }
 
@@ -132,13 +108,13 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
     }
 
     onButtonDown() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
+       
         this.setFrames(3)
         console.log("working")
         }
 
     onButtonUp() {
-            //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
+           
         this.setFrames(0)    
             
         }        

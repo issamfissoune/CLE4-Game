@@ -54,17 +54,6 @@ export class Game {
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         let sound = this.loader.resources["swordSlash"].data!
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50, sound)
-        
-        this._pixi.ticker.add((delta: number) => this.update(delta))
-       
-    }
-
-    private update(delta: number) {
-        if(this.collision(this.finnTheHuman, this.worm)){
-            console.log("player touches enemy 💀")
-            this.finnTheHuman.x = 600
-            let question = new Question(750,300,"Wat is een divergente bewegin")
-        this._pixi.stage.addChild(question)
 
         for(let i = 0; i<3; i++){
             this.heart = new PIXI.Sprite(this.loader.resources["heart"].texture!)
@@ -73,12 +62,6 @@ export class Game {
             this.heart.y = 20
             this.finHP.push(this.heart)
             this.pixi.stage.addChild(this.heart)
-
-            if(this.collision(this.heart, this.finHP[i])){
-                this.finHP[i].destroy();
-                this.finHP = this.finHP.filter(fi => fi != this.finHP[i]);
-                // this.keyboardFish.playSound();
-            }
         }
 
         for(let i = 0; i<3; i++){
@@ -89,7 +72,19 @@ export class Game {
             this.wormHP.push(this.heart)
             this.pixi.stage.addChild(this.heart)
         }
+        
+        this._pixi.ticker.add((delta: number) => this.update(delta))
+       
+    }
 
+    private update(delta: number) {
+        if(this.collision(this.finnTheHuman, this.worm)){
+            console.log("player touches enemy 💀")
+            this.finnTheHuman.x = 600
+            let last = this.finHP.pop()
+            this.pixi.stage.removeChild(last)
+            let question = new Question(750,300,"Wat is een divergente bewegin")
+        this._pixi.stage.addChild(question)
        
 
         let OpponentImage = PIXI.Texture.from("FinnIdle1.png")

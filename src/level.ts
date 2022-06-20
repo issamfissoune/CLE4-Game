@@ -17,7 +17,6 @@ export class Level {
 
     texture: PIXI.Texture<PIXI.Resource>
 
-    // public get pixi(): PIXI.Application { return this._pixi }
     constructor() {
        
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
@@ -77,12 +76,16 @@ export class Level {
 
     onButtonDown(name : string) {
 
+        console.log(name)
+
         switch (name){
             case "one":
-                this.button.destroy
+                this._pixi.stage.removeChild(this.button)
+                this._pixi.stage.removeChild(this.button)
+                this._pixi.stage.removeChild(this.button)
+                
             case"two":
-            console.log(name)
-                this.backgroundSprite.destroy
+                
         }
         
     }

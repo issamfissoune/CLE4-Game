@@ -37129,6 +37129,22 @@ class Game {
         let frames = this.createFinnFrames();
         let sound = this.loader.resources["swordSlash"].data;
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50, sound);
+        for(let i = 0; i < 3; i++){
+            this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
+            this.heart.scale.set(0.2);
+            this.heart.x = 80 * i + 100;
+            this.heart.y = 20;
+            this.finHP.push(this.heart);
+            this.pixi.stage.addChild(this.heart);
+        }
+        for(let i1 = 0; i1 < 3; i1++){
+            this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
+            this.heart.scale.set(0.2);
+            this.heart.x = 80 * i1 + 1115;
+            this.heart.y = 20;
+            this.wormHP.push(this.heart);
+            this.pixi.stage.addChild(this.heart);
+        }
         this._pixi.ticker.add((delta)=>this.update(delta)
         );
     }
@@ -37136,30 +37152,10 @@ class Game {
         if (this.collision(this.finnTheHuman, this.worm)) {
             console.log("player touches enemy 💀");
             this.finnTheHuman.x = 600;
+            let last = this.finHP.pop();
+            this.pixi.stage.removeChild(last);
             let question = new _question.Question(750, 300, "Wat is een divergente bewegin");
             this._pixi.stage.addChild(question);
-            for(let i = 0; i < 3; i++){
-                this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
-                this.heart.scale.set(0.2);
-                this.heart.x = 80 * i + 100;
-                this.heart.y = 20;
-                this.finHP.push(this.heart);
-                this.pixi.stage.addChild(this.heart);
-                if (this.collision(this.heart, this.finHP[i])) {
-                    this.finHP[i].destroy();
-                    this.finHP = this.finHP.filter((fi)=>fi != this.finHP[i]
-                    );
-                // this.keyboardFish.playSound();
-                }
-            }
-            for(let i1 = 0; i1 < 3; i1++){
-                this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
-                this.heart.scale.set(0.2);
-                this.heart.x = 80 * i1 + 1115;
-                this.heart.y = 20;
-                this.wormHP.push(this.heart);
-                this.pixi.stage.addChild(this.heart);
-            }
             let OpponentImage = _pixiJs.Texture.from("FinnIdle1.png");
             let OpponentImageSprite = new _pixiJs.Sprite(OpponentImage);
             this._pixi.stage.addChild(OpponentImageSprite);

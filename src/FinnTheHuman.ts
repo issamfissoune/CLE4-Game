@@ -48,9 +48,6 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
        
     }
 
-    
-
-
     onKeyDown(e: KeyboardEvent): any {
 
         switch (e.key.toUpperCase()) {

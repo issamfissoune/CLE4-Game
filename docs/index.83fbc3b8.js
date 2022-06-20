@@ -527,23 +527,15 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"kuM8f":[function(require,module,exports) {
 var _lobby = require("./lobby");
-new _lobby.Lobby() // new Level()
-;
+new _lobby.Lobby();
 
 },{"./lobby":"24bIG"}],"24bIG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-// import { Game } from "./game"
-// import { Assets } from './asset'
 parcelHelpers.export(exports, "Lobby", ()=>Lobby
 );
 var _pixiJs = require("pixi.js");
-var _startScreenBGPng = require("./images/startScreenBG.png");
-var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
-var _croppedbutton2Png = require("./images/croppedbutton2.png");
-var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
-var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
-var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
+var _assets = require("./assets");
 var _game = require("./game");
 class Lobby {
     constructor(){
@@ -553,18 +545,14 @@ class Lobby {
             height: window.innerHeight
         });
         document.body.appendChild(this.pixi.view);
-        // let asset = new Assets(this)
-        this.loader = new _pixiJs.Loader();
-        this.loader.add("startScreenBG", _startScreenBGPngDefault.default).add("buttonImage", _croppedbutton2PngDefault.default).add("buttonImageOnDown", _croppedbuttonDown2PngDefault.default);
-        this.loader.load(()=>this.doneLoading()
-        );
+        this.loader = new _assets.Assets(this);
     }
     doneLoading() {
-        let background = _pixiJs.Texture.from("startScreenBG");
-        this.backgroundSprite = new _pixiJs.Sprite(background);
+        console.log("Lobby: done Loading");
+        this.backgroundSprite = new _pixiJs.Sprite(this.loader.resources["startScreenBG"].texture);
         this.backgroundSprite.scale.set(0.75);
         this.pixi.stage.addChild(this.backgroundSprite);
-        this.button = new _pixiJs.Sprite(this.loader.resources["buttonImage"].texture);
+        this.button = new _pixiJs.Sprite(this.loader.resources["croppedbutton2"].texture);
         this.button.anchor.set(0.5);
         this.button.x = 720;
         this.button.y = 400;
@@ -578,19 +566,19 @@ class Lobby {
         );
     }
     onButtonDown() {
-        this.button.texture = this.loader.resources["buttonImageOnDown"].texture;
+        this.button.texture = this.loader.resources["croppedbuttonDown2"].texture;
         console.log("working");
         this.button.destroy();
         this.backgroundSprite.destroy();
-        new _game.Game(this.pixi);
+        new _game.Game(this.pixi, this.loader);
     }
     onButtonUp() {
-        this.button.texture = this.loader.resources["buttonImage"].texture;
+        this.button.texture = this.loader.resources["croppedbutton2"].texture;
         console.log("working");
     }
 }
 
-},{"pixi.js":"dsYej","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./assets":"jyCU7"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37105,59 +37093,16 @@ function __extends(d, b) {
     return AnimatedSprite1;
 }(_sprite.Sprite);
 
-},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"78aQ2":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return '/';
-}
-function getBaseURL(url) {
-    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error('Origin not found');
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"bZPng":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"2mljC":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"edeGs":[function(require,module,exports) {
+},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"edeGs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Game", ()=>Game
 );
 var _pixiJs = require("pixi.js");
-var _asset = require("./asset");
 var _finnTheHuman = require("./FinnTheHuman");
 var _worm = require("./worm");
 var _question = require("./question");
+var _possibility = require("./possibility");
 class Game {
     finHP = [];
     wormHP = [];
@@ -37165,16 +37110,20 @@ class Game {
     get pixi() {
         return this._pixi;
     }
-    constructor(pixi){
+    constructor(pixi, loader){
         _pixiJs.settings.SCALE_MODE = _pixiJs.SCALE_MODES.NEAREST;
         this._pixi = pixi;
-        this.loader = new _asset.Assets(this);
+        this.loader = loader;
+        this.init();
     }
-    loadCompleted() {
+    init() {
         let background = _pixiJs.Texture.from("city2");
         let backgroundSprite = new _pixiJs.Sprite(background);
         backgroundSprite.scale.set(0.75);
         this._pixi.stage.addChild(backgroundSprite);
+        let antwoord1 = new _possibility.Possibility(200, 200, "Dit is het antwoord", false);
+        let antwoord2 = new _possibility.Possibility(0, 0, "b", true);
+        this._pixi.stage.addChild(antwoord1, antwoord2);
         let wormFrames = this.createWormFrames();
         this.worm = new _worm.Worm(this, wormFrames, 50, 50);
         let frames = this.createFinnFrames();
@@ -37225,6 +37174,11 @@ class Game {
             OpponentImageSprite2.y = 50;
             OpponentImageSprite2.x = 1410;
             OpponentImageSprite2.anchor.set(0.5);
+            let versus = _pixiJs.Texture.from("versus");
+            let versusSprite = new _pixiJs.Sprite(versus);
+            this._pixi.stage.addChild(versusSprite);
+            versusSprite.x = 500;
+            versusSprite.y = 100;
         }
         this.finnTheHuman.update(delta);
     }
@@ -37273,132 +37227,7 @@ class Game {
     }
 }
 
-},{"pixi.js":"dsYej","./asset":"cIMAM","./FinnTheHuman":"9oUG7","./worm":"3nqFj","./question":"4knq6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cIMAM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Assets", ()=>Assets
-);
-var _pixiJs = require("pixi.js");
-// import { Game } from './game'
-var _city2Png = require("./images/City2.png");
-var _city2PngDefault = parcelHelpers.interopDefault(_city2Png);
-var _city1Png = require("./images/City1.png");
-var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
-var _startScreenBGPng = require("./images/startScreenBG.png");
-var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
-var _croppedbutton2Png = require("./images/croppedbutton2.png");
-var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
-var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
-var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
-var _textBoxPng = require("./images/textBox.png");
-var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
-var _swordSlashMp3 = require("url:./sounds/swordSlash.mp3");
-var _swordSlashMp3Default = parcelHelpers.interopDefault(_swordSlashMp3);
-var _dirtPng = require("./images/dirt.png");
-var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
-var _vs2Png = require("./images/vs2.png");
-var _vs2PngDefault = parcelHelpers.interopDefault(_vs2Png);
-var _heartHealthPng = require("./images/heartHealth.png");
-var _heartHealthPngDefault = parcelHelpers.interopDefault(_heartHealthPng);
-class Assets extends _pixiJs.Loader {
-    // private game: Game
-    assets = [];
-    constructor(game){
-        super();
-        // this.game = game
-        console.log("hi");
-        this.assets = [
-            // {name: "finn_idle", url: "finnIdle.json" },
-            // {name: "finn_run", url:"finnRun.json"},
-            // {name: "finn_damage", url: "FinnDamage.json"},
-            // {name: "finn_attack", url: "FinnAttack.json"},
-            {
-                name: "swordSlash",
-                url: _swordSlashMp3Default.default
-            },
-            {
-                name: "croppedbutton2",
-                url: _croppedbutton2PngDefault.default
-            },
-            {
-                name: "croppedbuttonDown2",
-                url: _croppedbuttonDown2PngDefault.default
-            },
-            {
-                name: "backgroundImage",
-                url: _city1PngDefault.default
-            },
-            {
-                name: "All_Moves",
-                url: "FinnCompleteSheet.json"
-            },
-            {
-                name: "city2",
-                url: _city2PngDefault.default
-            },
-            {
-                name: "startScreenBG",
-                url: _startScreenBGPngDefault.default
-            },
-            {
-                name: "worm",
-                url: "wormSpritesheet.json"
-            },
-            {
-                name: "textBox",
-                url: _textBoxPngDefault.default
-            },
-            {
-                name: "dirt",
-                url: _dirtPngDefault.default
-            },
-            {
-                name: "versus",
-                url: _vs2PngDefault.default
-            },
-            {
-                name: "heart",
-                url: _heartHealthPngDefault.default
-            }, 
-        ];
-        this.assets.forEach((asset)=>{
-            this.add(asset.name, asset.url);
-        });
-        this.onError.add((arg)=>{
-            console.error(arg);
-        });
-        this.onProgress.add((loader)=>this.showProgress(loader)
-        );
-        this.load(()=>game.loadCompleted()
-        );
-    }
-    showProgress(loader) {
-        console.log(`Loading ${loader.progress}%`);
-    }
-}
-
-},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/vs2.png":"hMgUB","./images/heartHealth.png":"9XJZL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gJfU4":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"hK38Y":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"EDVpg":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "textBox.8dbb072c.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"kxXbd":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "swordSlash.afed3762.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"jwJZG":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "dirt.d2ffe5eb.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"hMgUB":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "vs2.cc9f49e2.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"9XJZL":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "heartHealth.a4d01e8b.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"9oUG7":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./FinnTheHuman":"9oUG7","./worm":"3nqFj","./question":"4knq6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./possibility":"1SWgP"}],"9oUG7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "FinnTheHuman", ()=>FinnTheHuman
@@ -37437,27 +37266,7 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
     update(delta) {
         super.update(delta);
         this.x += this.speedX * delta;
-    // this.fall(delta)
-    // this.keepInScreen()
     }
-    // private fall(delta): void {
-    //     this.x += this.speedX * delta
-    //     this.y += this.speedY * delta
-    //     this.speedY += this.gravity
-    // }
-    // private keepInScreen() {
-    //     if (this.getBounds().left < 0) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.left
-    //     }
-    //     if (this.getBounds().right > this.game.pixi.screen.right) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.right - this.width
-    //     }
-    //     if (this.getBounds().bottom > this.game.pixi.screen.bottom) {
-    //         this.y =this.game.pixi.screen.bottom - this.height
-    //     }
-    // }
     onKeyDown(e) {
         switch(e.key.toUpperCase()){
             case "A":
@@ -37506,12 +37315,10 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
         }
     }
     onButtonDown() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
         this.setFrames(3);
         console.log("working");
     }
     onButtonUp() {
-        //this.button = new PIXI.Sprite(this.loader.resources["buttonImageOnDown"].texture!)
         this.setFrames(0);
     }
 }
@@ -37552,10 +37359,8 @@ parcelHelpers.export(exports, "Worm", ()=>Worm
 );
 var _pixiJs = require("pixi.js");
 var _healthbar = require("./healthbar");
-var _asset = require("./asset");
 class Worm extends _pixiJs.AnimatedSprite {
     speedX = 0;
-    // private speedY: number = 0
     frames = [];
     previousFrame = -1;
     constructor(game, textures, x, y){
@@ -37565,8 +37370,7 @@ class Worm extends _pixiJs.AnimatedSprite {
         /*
          * An AnimatedSprite inherits all the properties of a PIXI sprite
          * so you can change its position, its anchor, mask it, etc
-         */ let asset = new _asset.Assets(this);
-        this.x = 1200;
+         */ this.x = 1200;
         this.y = 600;
         this.scale.set(5);
         this.animationSpeed = 0.06;
@@ -37659,7 +37463,7 @@ class Worm extends _pixiJs.AnimatedSprite {
     }
 }
 
-},{"pixi.js":"dsYej","./healthbar":"dInwI","./asset":"cIMAM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Question", ()=>Question
@@ -37688,6 +37492,211 @@ class Question extends _pixiJs.Sprite {
     }
 }
 
-},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
+},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1SWgP":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Possibility", ()=>Possibility
+);
+var _pixiJs = require("pixi.js");
+class Possibility extends _pixiJs.Sprite {
+    constructor(x, y, antwoord, correct){
+        // PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+        super(_pixiJs.Texture.from("textBox"));
+        this.x = x;
+        this.y = y;
+        this.scale.set(2);
+        this.anchor.set(0.5);
+        let style = new _pixiJs.TextStyle({
+            fontFamily: 'ArcadeFont',
+            fontSize: 12,
+            fontWeight: 'bold',
+            fill: '#00ff99',
+            align: "center"
+        });
+        let answer = new _pixiJs.Text(antwoord, style);
+        answer.x = 0;
+        answer.anchor.set(0.5);
+        // vraag1.y = 100
+        this.addChild(answer);
+    }
+}
+
+},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jyCU7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Assets", ()=>Assets
+);
+var _pixiJs = require("pixi.js");
+var _city2Png = require("./images/City2.png");
+var _city2PngDefault = parcelHelpers.interopDefault(_city2Png);
+var _city1Png = require("./images/City1.png");
+var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
+var _croppedbutton2Png = require("./images/croppedbutton2.png");
+var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
+var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
+var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
+var _textBoxPng = require("./images/textBox.png");
+var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
+var _swordSlashMp3 = require("url:./sounds/swordSlash.mp3");
+var _swordSlashMp3Default = parcelHelpers.interopDefault(_swordSlashMp3);
+var _dirtPng = require("./images/dirt.png");
+var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
+var _vs2Png = require("./images/vs2.png");
+var _vs2PngDefault = parcelHelpers.interopDefault(_vs2Png);
+var _heartHealthPng = require("./images/heartHealth.png");
+var _heartHealthPngDefault = parcelHelpers.interopDefault(_heartHealthPng);
+var _characterBackgrundPng = require("./images/CharacterBackgrund.png");
+var _characterBackgrundPngDefault = parcelHelpers.interopDefault(_characterBackgrundPng);
+var _startScreenBGPng = require("./images/startScreenBG.png");
+var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
+class Assets extends _pixiJs.Loader {
+    // private game: Game
+    assets = [];
+    constructor(lobby){
+        super();
+        // this.game = game
+        console.log("hi");
+        this.assets = [
+            // {name: "finn_idle", url: "finnIdle.json" },
+            // {name: "finn_run", url:"finnRun.json"},
+            // {name: "finn_damage", url: "FinnDamage.json"},
+            // {name: "finn_attack", url: "FinnAttack.json"},
+            {
+                name: "swordSlash",
+                url: _swordSlashMp3Default.default
+            },
+            {
+                name: "croppedbutton2",
+                url: _croppedbutton2PngDefault.default
+            },
+            {
+                name: "croppedbuttonDown2",
+                url: _croppedbuttonDown2PngDefault.default
+            },
+            {
+                name: "backgroundImage",
+                url: _city1PngDefault.default
+            },
+            {
+                name: "All_Moves",
+                url: "FinnCompleteSheet.json"
+            },
+            {
+                name: "city2",
+                url: _city2PngDefault.default
+            },
+            {
+                name: "worm",
+                url: "wormSpritesheet.json"
+            },
+            {
+                name: "textBox",
+                url: _textBoxPngDefault.default
+            },
+            {
+                name: "dirt",
+                url: _dirtPngDefault.default
+            },
+            {
+                name: "versus",
+                url: _vs2PngDefault.default
+            },
+            {
+                name: "heart",
+                url: _heartHealthPngDefault.default
+            },
+            {
+                name: "cBackground",
+                url: _characterBackgrundPngDefault.default
+            },
+            {
+                name: "startScreenBG",
+                url: _startScreenBGPngDefault.default
+            }, 
+        ];
+        this.assets.forEach((asset)=>{
+            this.add(asset.name, asset.url);
+        });
+        this.onError.add((arg)=>{
+            console.error(arg);
+        });
+        this.onProgress.add((loader)=>this.showProgress(loader)
+        );
+        this.load(()=>lobby.doneLoading()
+        );
+    }
+    showProgress(loader) {
+        console.log(`Loading ${loader.progress}%`);
+    }
+}
+
+},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/vs2.png":"hMgUB","./images/heartHealth.png":"9XJZL","./images/CharacterBackgrund.png":"5kZCl","./images/startScreenBG.png":"78aQ2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gJfU4":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"hK38Y":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"bZPng":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"2mljC":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"EDVpg":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "textBox.8dbb072c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"kxXbd":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "swordSlash.afed3762.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"jwJZG":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "dirt.d2ffe5eb.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"hMgUB":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "vs2.cc9f49e2.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"9XJZL":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "heartHealth.a4d01e8b.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"5kZCl":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "CharacterBackgrund.d41cdefb.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
 
 //# sourceMappingURL=index.83fbc3b8.js.map

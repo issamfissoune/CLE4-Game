@@ -37111,6 +37111,10 @@ var _textBoxPng = require("./images/textBox.png");
 var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
 var _swordSlashMp3 = require("url:./sounds/swordSlash.mp3");
 var _swordSlashMp3Default = parcelHelpers.interopDefault(_swordSlashMp3);
+var _lakeMp3 = require("url:./sounds/Lake.mp3");
+var _lakeMp3Default = parcelHelpers.interopDefault(_lakeMp3);
+var _battlemusicMp3 = require("url:./sounds/battlemusic.mp3");
+var _battlemusicMp3Default = parcelHelpers.interopDefault(_battlemusicMp3);
 var _dirtPng = require("./images/dirt.png");
 var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
 var _vs3Png = require("./images/vs3.png");
@@ -37134,6 +37138,14 @@ class Assets extends _pixiJs.Loader {
             {
                 name: "swordSlash",
                 url: _swordSlashMp3Default.default
+            },
+            {
+                name: "backgroundMusic",
+                url: _lakeMp3Default.default
+            },
+            {
+                name: "battleMusic",
+                url: _battlemusicMp3Default.default
             },
             {
                 name: "croppedbutton2",
@@ -37204,7 +37216,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/heartHealth.png":"9XJZL","./images/CharacterBackgrund.png":"5kZCl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/vs3.png":"1lSqM","./images/answerBox.png":"gA0Ep"}],"gJfU4":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/heartHealth.png":"9XJZL","./images/CharacterBackgrund.png":"5kZCl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/vs3.png":"1lSqM","./images/answerBox.png":"gA0Ep","url:./sounds/Lake.mp3":"kXgZS","url:./sounds/battlemusic.mp3":"h6Bfn"}],"gJfU4":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37274,6 +37286,12 @@ module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "vs3.79
 },{"./helpers/bundle-url":"lgJ39"}],"gA0Ep":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "answerBox.829fe1c1.png" + "?" + Date.now();
 
+},{"./helpers/bundle-url":"lgJ39"}],"kXgZS":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "Lake.20d56b52.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"h6Bfn":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "battlemusic.bf3141db.mp3" + "?" + Date.now();
+
 },{"./helpers/bundle-url":"lgJ39"}],"edeGs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -37302,6 +37320,8 @@ class Game {
         let backgroundSprite = new _pixiJs.Sprite(background);
         backgroundSprite.scale.set(0.75);
         this._pixi.stage.addChild(backgroundSprite);
+        this.backgroundMusic = this.loader.resources["backgroundMusic"].data;
+        this.backgroundMusic.play();
         let wormFrames = this.createWormFrames();
         this.worm = new _worm.Worm(this, wormFrames, 50, 50);
         let frames = this.createFinnFrames();
@@ -37313,6 +37333,9 @@ class Game {
     update(delta) {
         if (this.collision(this.finnTheHuman, this.worm)) {
             console.log("player touches enemy 💀");
+            this.battleMusic = this.loader.resources["battleMusic"].data;
+            this.battleMusic.play();
+            this.backgroundMusic.pause();
             this.finnTheHuman.x = 600;
             this.worm.x = 800;
             let last = this.finHP.pop();

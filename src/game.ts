@@ -13,6 +13,8 @@ export class Game {
     private worm: Worm
     private heart: PIXI.Sprite;
     private heart2: PIXI.Sprite
+    private backgroundMusic: HTMLAudioElement
+    private battleMusic: HTMLAudioElement
     qBox: PIXI.Texture
     // healthbar: HealthBar
     loader: PIXI.Loader
@@ -38,23 +40,17 @@ export class Game {
         let backgroundSprite =  new PIXI.Sprite(background)
         backgroundSprite.scale.set(0.75)
         this._pixi.stage.addChild(backgroundSprite)
-
+        
+        this.backgroundMusic = this.loader.resources["backgroundMusic"].data!
+        this.backgroundMusic.play()
        
-
-       
-
         let wormFrames: PIXI.Texture [] [] = this.createWormFrames()
         this.worm = new Worm(this, wormFrames, 50, 50)
         
-       
-        
-      
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         let sound = this.loader.resources["swordSlash"].data!
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50, sound)
 
-        
-        
         this._pixi.ticker.add((delta: number) => this.update(delta))
        
     }
@@ -62,6 +58,9 @@ export class Game {
     private update(delta: number) {
         if(this.collision(this.finnTheHuman, this.worm)){
             console.log("player touches enemy 💀")
+            this.battleMusic = this.loader.resources["battleMusic"].data!
+            this.battleMusic.play()
+            this.backgroundMusic.pause()
             this.finnTheHuman.x = 600
             this.worm.x = 800
             let last = this.finHP.pop()

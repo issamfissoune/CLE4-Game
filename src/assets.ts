@@ -5,6 +5,8 @@ import croppedbutton2 from './images/croppedbutton2.png'
 import croppedbuttonDown2 from './images/croppedbuttonDown2.png'
 import textBox from './images/textBox.png'
 import swordSlash from 'url:./sounds/swordSlash.mp3'
+import backgroundMusic from "url:./sounds/Lake.mp3"
+import battleMusic from "url:./sounds/battlemusic.mp3"
 import dirt from './images/dirt.png'
 import versus from './images/vs3.png'
 import heart from "./images/heartHealth.png"
@@ -27,6 +29,8 @@ export class Assets extends PIXI.Loader {
         this.assets = [
            
             {name : "swordSlash", url : swordSlash },
+            {name: "backgroundMusic", url: backgroundMusic},
+            {name: "battleMusic", url: battleMusic},
             {name : "croppedbutton2", url: croppedbutton2 },
             {name : "croppedbuttonDown2", url: croppedbuttonDown2 },
             {name: "backgroundImage", url: backgroundImage},

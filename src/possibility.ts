@@ -8,12 +8,13 @@ export class Possibility extends PIXI.Sprite {
 
         // PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-        super(PIXI.Texture.from("textBox"))
+        super(PIXI.Texture.from("answerBox"))
 
 
-        
+
         this.x = x
         this.y = y
+        // this.scale.set(6)
 
 
 

@@ -37,8 +37,8 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
 
         window.addEventListener("keyup", (e: KeyboardEvent) => this.onKeyUp(e))
         
-        this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
-        this.addChild(this.healthbar)
+        // this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
+        // this.addChild(this.healthbar)
     }
 
     public update(delta: number): void {
@@ -55,14 +55,14 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
             case "ARROWLEFT":
                 this.speedX = -3
                 this.scale.set(-5, 5)
-                this.healthbar.scale.set(-1, 1)
+                // this.healthbar.scale.set(-1, 1)
                 this.setFrames(1)
                 break
             case "D":
             case "ARROWRIGHT":
                 this.speedX = 3
                 this.scale.set(5)
-                this.healthbar.scale.set(1)
+                // this.healthbar.scale.set(1)
                 this.setFrames(1)
                 break
             case "Q":
@@ -78,6 +78,7 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
         
         }
     }
+
 
     onKeyUp(e: KeyboardEvent): any {
         switch (e.key.toUpperCase()) {
@@ -114,5 +115,25 @@ export class FinnTheHuman extends PIXI.AnimatedSprite {
            
         this.setFrames(0)    
             
-        }        
+        }  
+        
+    public finnHit(){
+        this.scale.set(5)
+         this.setFrames(3)
+         this.loop = false
+         
+         
+     }       
+
+     public finnIdle(){
+         this.setFrames(0)
+         this.scale.set(5)
+         this.loop= true
+     }
+
+     public finnDamage(){
+         this.setFrames(2)
+         this.scale.set(5)
+         this.loop = false
+     }
 }

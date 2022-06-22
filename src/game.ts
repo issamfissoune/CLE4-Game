@@ -12,8 +12,9 @@ export class Game {
     background: PIXI.Texture
     private worm: Worm
     private heart: PIXI.Sprite;
+    private heart2: PIXI.Sprite
     qBox: PIXI.Texture
-    healthbar: HealthBar
+    // healthbar: HealthBar
     loader: PIXI.Loader
 
     finHP: PIXI.Sprite[] = []
@@ -38,22 +39,37 @@ export class Game {
         backgroundSprite.scale.set(0.75)
         this._pixi.stage.addChild(backgroundSprite)
 
-        
-        let antwoord1 = new Possibility(200, 200 ,"Dit is het antwoord", false)
-        let antwoord2 = new Possibility(0, 0, "b", true)
-        this._pixi.stage.addChild(antwoord1, antwoord2)
+       
 
-
+       
 
         let wormFrames: PIXI.Texture [] [] = this.createWormFrames()
         this.worm = new Worm(this, wormFrames, 50, 50)
         
        
-       
+        
       
         let frames: PIXI.Texture [][] = this.createFinnFrames()
         let sound = this.loader.resources["swordSlash"].data!
         this.finnTheHuman = new FinnTheHuman(this, frames, 50, 50, sound)
+
+        
+        
+        this._pixi.ticker.add((delta: number) => this.update(delta))
+       
+    }
+
+    private update(delta: number) {
+        if(this.collision(this.finnTheHuman, this.worm)){
+            console.log("player touches enemy 💀")
+            this.finnTheHuman.x = 600
+            this.worm.x = 800
+            let last = this.finHP.pop()
+            this.pixi.stage.removeChild(last)
+            let last2 = this.wormHP.pop()
+            this.pixi.stage.removeChild(last2)
+            let question = new Question(750,300,"Wat is een divergente beweging")
+        this._pixi.stage.addChild(question)
 
         for(let i = 0; i<3; i++){
             this.heart = new PIXI.Sprite(this.loader.resources["heart"].texture!)
@@ -65,26 +81,32 @@ export class Game {
         }
 
         for(let i = 0; i<3; i++){
-            this.heart = new PIXI.Sprite(this.loader.resources["heart"].texture!)
-            this.heart.scale.set(0.2)
-            this.heart.x = 80 * i + 1115
-            this.heart.y = 20
-            this.wormHP.push(this.heart)
-            this.pixi.stage.addChild(this.heart)
+            this.heart2 = new PIXI.Sprite(this.loader.resources["heart"].texture!)
+            this.heart2.scale.set(0.2)
+            this.heart2.x = 80 * i + 1115
+            this.heart2.y = 20
+            this.wormHP.push(this.heart2)
+            this.pixi.stage.addChild(this.heart2)
         }
-        
-        this._pixi.ticker.add((delta: number) => this.update(delta))
-       
-    }
 
-    private update(delta: number) {
-        if(this.collision(this.finnTheHuman, this.worm)){
-            console.log("player touches enemy 💀")
-            this.finnTheHuman.x = 600
-            let last = this.finHP.pop()
-            this.pixi.stage.removeChild(last)
-            let question = new Question(750,300,"Wat is een divergente bewegin")
-        this._pixi.stage.addChild(question)
+        let answers: Possibility[] = []
+        let antwoord1 = new Possibility(750, 350 ,"b", false)
+        let antwoord2 = new Possibility(600, 350, "a", true)
+        let antwoord3 = new Possibility(900, 350, "c", false)
+        this._pixi.stage.addChild(antwoord1, antwoord2, antwoord3)
+        answers.push(antwoord1, antwoord2, antwoord3)
+        
+        antwoord1.interactive = true;
+        antwoord1.buttonMode = true;
+        antwoord1.on('mousedown', () => this.onButtonDown())
+        antwoord1.on('mouseup', () => this.onButtonUp())
+        
+        antwoord2.interactive = true;
+        antwoord2.buttonMode = true;    
+        antwoord2.on('mousedown', () => this.onButtonDown2())
+        antwoord2.on('mouseup', () => this.onButtonUp2())
+        
+
        
 
         let OpponentImage = PIXI.Texture.from("FinnIdle1.png")
@@ -106,8 +128,9 @@ export class Game {
         let versus = PIXI.Texture.from("versus")
         let versusSprite = new PIXI.Sprite(versus)
         this._pixi.stage.addChild(versusSprite)
-        versusSprite.x = 500
-        versusSprite.y = 100
+        versusSprite.x = 600
+        versusSprite.y = 0
+        versusSprite.scale.set(0.40)
        
     
     }
@@ -116,6 +139,35 @@ export class Game {
         
         this.finnTheHuman.update(delta)
     }
+
+    onButtonDown(): void {
+        this.finnTheHuman.finnHit()
+        this.worm.wormDamage()
+        let last2 = this.wormHP.pop()
+        this.pixi.stage.removeChild(last2)
+       
+     }
+
+    onButtonUp(): void {
+        this.finnTheHuman.finnIdle()
+        this.worm.wormIdle()
+    }
+    
+    onButtonDown2(): void {
+        this.worm.wormHit
+        this.finnTheHuman.finnDamage()
+        let last = this.finHP.pop()
+        this.pixi.stage.removeChild(last)
+
+       
+     }
+
+    onButtonUp2(): void {
+        this.worm.wormIdle()
+        this.finnTheHuman.finnIdle()
+
+    }
+   
 
     private createFinnFrames(): PIXI.Texture[][] {
         // create an array of textures from an image path

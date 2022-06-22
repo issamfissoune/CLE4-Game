@@ -6,10 +6,11 @@ import croppedbuttonDown2 from './images/croppedbuttonDown2.png'
 import textBox from './images/textBox.png'
 import swordSlash from 'url:./sounds/swordSlash.mp3'
 import dirt from './images/dirt.png'
-import versus from './images/vs2.png'
+import versus from './images/vs3.png'
 import heart from "./images/heartHealth.png"
 import cBackground from "./images/CharacterBackgrund.png"
 import background from "./images/startScreenBG.png"
+import answerBox from "./images/answerBox.png"
 import { Lobby } from './lobby'
 
 type AssetFile = { name: string, url: string }
@@ -24,10 +25,7 @@ export class Assets extends PIXI.Loader {
         // this.game = game
         console.log("hi")
         this.assets = [
-            // {name: "finn_idle", url: "finnIdle.json" },
-            // {name: "finn_run", url:"finnRun.json"},
-            // {name: "finn_damage", url: "FinnDamage.json"},
-            // {name: "finn_attack", url: "FinnAttack.json"},
+           
             {name : "swordSlash", url : swordSlash },
             {name : "croppedbutton2", url: croppedbutton2 },
             {name : "croppedbuttonDown2", url: croppedbuttonDown2 },
@@ -41,6 +39,7 @@ export class Assets extends PIXI.Loader {
             {name: "heart", url: heart},
             {name: "cBackground", url: cBackground},
             {name: "startScreenBG", url: background},
+            {name:"answerBox", url: answerBox},
             
         ] 
 

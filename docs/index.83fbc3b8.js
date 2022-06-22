@@ -578,7 +578,7 @@ class Lobby {
     }
 }
 
-},{"pixi.js":"dsYej","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./assets":"jyCU7"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./assets":"jyCU7","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37093,7 +37093,188 @@ function __extends(d, b) {
     return AnimatedSprite1;
 }(_sprite.Sprite);
 
-},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"edeGs":[function(require,module,exports) {
+},{"@pixi/core":"7PEF8","@pixi/sprite":"9mbxh","@pixi/ticker":"8ekG7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jyCU7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Assets", ()=>Assets
+);
+var _pixiJs = require("pixi.js");
+var _city2Png = require("./images/City2.png");
+var _city2PngDefault = parcelHelpers.interopDefault(_city2Png);
+var _city1Png = require("./images/City1.png");
+var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
+var _croppedbutton2Png = require("./images/croppedbutton2.png");
+var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
+var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
+var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
+var _textBoxPng = require("./images/textBox.png");
+var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
+var _swordSlashMp3 = require("url:./sounds/swordSlash.mp3");
+var _swordSlashMp3Default = parcelHelpers.interopDefault(_swordSlashMp3);
+var _dirtPng = require("./images/dirt.png");
+var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
+var _vs3Png = require("./images/vs3.png");
+var _vs3PngDefault = parcelHelpers.interopDefault(_vs3Png);
+var _heartHealthPng = require("./images/heartHealth.png");
+var _heartHealthPngDefault = parcelHelpers.interopDefault(_heartHealthPng);
+var _characterBackgrundPng = require("./images/CharacterBackgrund.png");
+var _characterBackgrundPngDefault = parcelHelpers.interopDefault(_characterBackgrundPng);
+var _startScreenBGPng = require("./images/startScreenBG.png");
+var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
+var _answerBoxPng = require("./images/answerBox.png");
+var _answerBoxPngDefault = parcelHelpers.interopDefault(_answerBoxPng);
+class Assets extends _pixiJs.Loader {
+    // private game: Game
+    assets = [];
+    constructor(lobby){
+        super();
+        // this.game = game
+        console.log("hi");
+        this.assets = [
+            {
+                name: "swordSlash",
+                url: _swordSlashMp3Default.default
+            },
+            {
+                name: "croppedbutton2",
+                url: _croppedbutton2PngDefault.default
+            },
+            {
+                name: "croppedbuttonDown2",
+                url: _croppedbuttonDown2PngDefault.default
+            },
+            {
+                name: "backgroundImage",
+                url: _city1PngDefault.default
+            },
+            {
+                name: "All_Moves",
+                url: "FinnCompleteSheet.json"
+            },
+            {
+                name: "city2",
+                url: _city2PngDefault.default
+            },
+            {
+                name: "worm",
+                url: "wormSpritesheet.json"
+            },
+            {
+                name: "textBox",
+                url: _textBoxPngDefault.default
+            },
+            {
+                name: "dirt",
+                url: _dirtPngDefault.default
+            },
+            {
+                name: "versus",
+                url: _vs3PngDefault.default
+            },
+            {
+                name: "heart",
+                url: _heartHealthPngDefault.default
+            },
+            {
+                name: "cBackground",
+                url: _characterBackgrundPngDefault.default
+            },
+            {
+                name: "startScreenBG",
+                url: _startScreenBGPngDefault.default
+            },
+            {
+                name: "answerBox",
+                url: _answerBoxPngDefault.default
+            }, 
+        ];
+        this.assets.forEach((asset)=>{
+            this.add(asset.name, asset.url);
+        });
+        this.onError.add((arg)=>{
+            console.error(arg);
+        });
+        this.onProgress.add((loader)=>this.showProgress(loader)
+        );
+        this.load(()=>lobby.doneLoading()
+        );
+    }
+    showProgress(loader) {
+        console.log(`Loading ${loader.progress}%`);
+    }
+}
+
+},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/heartHealth.png":"9XJZL","./images/CharacterBackgrund.png":"5kZCl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/vs3.png":"1lSqM","./images/answerBox.png":"gA0Ep"}],"gJfU4":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"hK38Y":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"bZPng":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"2mljC":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"EDVpg":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "textBox.8dbb072c.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"kxXbd":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "swordSlash.afed3762.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"jwJZG":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "dirt.d2ffe5eb.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"9XJZL":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "heartHealth.a4d01e8b.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"5kZCl":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "CharacterBackgrund.d41cdefb.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"1lSqM":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "vs3.7905586e.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"gA0Ep":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "answerBox.829fe1c1.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"edeGs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Game", ()=>Game
@@ -37121,30 +37302,11 @@ class Game {
         let backgroundSprite = new _pixiJs.Sprite(background);
         backgroundSprite.scale.set(0.75);
         this._pixi.stage.addChild(backgroundSprite);
-        let antwoord1 = new _possibility.Possibility(200, 200, "Dit is het antwoord", false);
-        let antwoord2 = new _possibility.Possibility(0, 0, "b", true);
-        this._pixi.stage.addChild(antwoord1, antwoord2);
         let wormFrames = this.createWormFrames();
         this.worm = new _worm.Worm(this, wormFrames, 50, 50);
         let frames = this.createFinnFrames();
         let sound = this.loader.resources["swordSlash"].data;
         this.finnTheHuman = new _finnTheHuman.FinnTheHuman(this, frames, 50, 50, sound);
-        for(let i = 0; i < 3; i++){
-            this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
-            this.heart.scale.set(0.2);
-            this.heart.x = 80 * i + 100;
-            this.heart.y = 20;
-            this.finHP.push(this.heart);
-            this.pixi.stage.addChild(this.heart);
-        }
-        for(let i1 = 0; i1 < 3; i1++){
-            this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
-            this.heart.scale.set(0.2);
-            this.heart.x = 80 * i1 + 1115;
-            this.heart.y = 20;
-            this.wormHP.push(this.heart);
-            this.pixi.stage.addChild(this.heart);
-        }
         this._pixi.ticker.add((delta)=>this.update(delta)
         );
     }
@@ -37152,10 +37314,47 @@ class Game {
         if (this.collision(this.finnTheHuman, this.worm)) {
             console.log("player touches enemy 💀");
             this.finnTheHuman.x = 600;
+            this.worm.x = 800;
             let last = this.finHP.pop();
             this.pixi.stage.removeChild(last);
-            let question = new _question.Question(750, 300, "Wat is een divergente bewegin");
+            let last2 = this.wormHP.pop();
+            this.pixi.stage.removeChild(last2);
+            let question = new _question.Question(750, 300, "Wat is een divergente beweging");
             this._pixi.stage.addChild(question);
+            for(let i = 0; i < 3; i++){
+                this.heart = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
+                this.heart.scale.set(0.2);
+                this.heart.x = 80 * i + 100;
+                this.heart.y = 20;
+                this.finHP.push(this.heart);
+                this.pixi.stage.addChild(this.heart);
+            }
+            for(let i1 = 0; i1 < 3; i1++){
+                this.heart2 = new _pixiJs.Sprite(this.loader.resources["heart"].texture);
+                this.heart2.scale.set(0.2);
+                this.heart2.x = 80 * i1 + 1115;
+                this.heart2.y = 20;
+                this.wormHP.push(this.heart2);
+                this.pixi.stage.addChild(this.heart2);
+            }
+            let answers = [];
+            let antwoord1 = new _possibility.Possibility(750, 350, "b", false);
+            let antwoord2 = new _possibility.Possibility(600, 350, "a", true);
+            let antwoord3 = new _possibility.Possibility(900, 350, "c", false);
+            this._pixi.stage.addChild(antwoord1, antwoord2, antwoord3);
+            answers.push(antwoord1, antwoord2, antwoord3);
+            antwoord1.interactive = true;
+            antwoord1.buttonMode = true;
+            antwoord1.on('mousedown', ()=>this.onButtonDown()
+            );
+            antwoord1.on('mouseup', ()=>this.onButtonUp()
+            );
+            antwoord2.interactive = true;
+            antwoord2.buttonMode = true;
+            antwoord2.on('mousedown', ()=>this.onButtonDown2()
+            );
+            antwoord2.on('mouseup', ()=>this.onButtonUp2()
+            );
             let OpponentImage = _pixiJs.Texture.from("FinnIdle1.png");
             let OpponentImageSprite = new _pixiJs.Sprite(OpponentImage);
             this._pixi.stage.addChild(OpponentImageSprite);
@@ -37173,10 +37372,31 @@ class Game {
             let versus = _pixiJs.Texture.from("versus");
             let versusSprite = new _pixiJs.Sprite(versus);
             this._pixi.stage.addChild(versusSprite);
-            versusSprite.x = 500;
-            versusSprite.y = 100;
+            versusSprite.x = 600;
+            versusSprite.y = 0;
+            versusSprite.scale.set(0.40);
         }
         this.finnTheHuman.update(delta);
+    }
+    onButtonDown() {
+        this.finnTheHuman.finnHit();
+        this.worm.wormDamage();
+        let last2 = this.wormHP.pop();
+        this.pixi.stage.removeChild(last2);
+    }
+    onButtonUp() {
+        this.finnTheHuman.finnIdle();
+        this.worm.wormIdle();
+    }
+    onButtonDown2() {
+        this.worm.wormHit;
+        this.finnTheHuman.finnDamage();
+        let last = this.finHP.pop();
+        this.pixi.stage.removeChild(last);
+    }
+    onButtonUp2() {
+        this.worm.wormIdle();
+        this.finnTheHuman.finnIdle();
     }
     createFinnFrames() {
         // create an array of textures from an image path
@@ -37229,7 +37449,6 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "FinnTheHuman", ()=>FinnTheHuman
 );
 var _pixiJs = require("pixi.js");
-var _healthbar = require("./healthbar");
 class FinnTheHuman extends _pixiJs.AnimatedSprite {
     speedX = 0;
     // private speedY: number = 0
@@ -37256,8 +37475,8 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
         );
         window.addEventListener("keyup", (e)=>this.onKeyUp(e)
         );
-        this.healthbar = new _healthbar.HealthBar(0, 0, 100, 0x00FF00, 0xff0000);
-        this.addChild(this.healthbar);
+    // this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
+    // this.addChild(this.healthbar)
     }
     update(delta) {
         super.update(delta);
@@ -37269,14 +37488,14 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
             case "ARROWLEFT":
                 this.speedX = -3;
                 this.scale.set(-5, 5);
-                this.healthbar.scale.set(-1, 1);
+                // this.healthbar.scale.set(-1, 1)
                 this.setFrames(1);
                 break;
             case "D":
             case "ARROWRIGHT":
                 this.speedX = 3;
                 this.scale.set(5);
-                this.healthbar.scale.set(1);
+                // this.healthbar.scale.set(1)
                 this.setFrames(1);
                 break;
             case "Q":
@@ -37317,34 +37536,20 @@ class FinnTheHuman extends _pixiJs.AnimatedSprite {
     onButtonUp() {
         this.setFrames(0);
     }
-}
-
-},{"pixi.js":"dsYej","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dInwI":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "HealthBar", ()=>HealthBar
-);
-var _pixiJs = require("pixi.js");
-class HealthBar extends _pixiJs.Graphics {
-    constructor(x, y, maxHealth, color, borderColor){
-        super();
-        let filter = new _pixiJs.filters.ColorMatrixFilter();
-        this.filters = [
-            filter
-        ];
-        filter.hue(maxHealth, false);
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.borderColor = borderColor;
-        // this.pivot.set(0.5)
-        this.show();
+    finnHit() {
+        this.scale.set(5);
+        this.setFrames(3);
+        this.loop = false;
     }
-    show() {
-        this.lineStyle(1, this.borderColor);
-        this.beginFill(0xff0000);
-        this.drawRect(-13, -12, window.innerWidth * 0.02, 2);
-        this.endFill();
+    finnIdle() {
+        this.setFrames(0);
+        this.scale.set(5);
+        this.loop = true;
+    }
+    finnDamage() {
+        this.setFrames(2);
+        this.scale.set(5);
+        this.loop = false;
     }
 }
 
@@ -37354,7 +37559,6 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Worm", ()=>Worm
 );
 var _pixiJs = require("pixi.js");
-var _healthbar = require("./healthbar");
 class Worm extends _pixiJs.AnimatedSprite {
     speedX = 0;
     frames = [];
@@ -37379,40 +37583,13 @@ class Worm extends _pixiJs.AnimatedSprite {
         );
         window.addEventListener("keyup", (e)=>this.onKeyUp(e)
         );
-        this.healthbar = new _healthbar.HealthBar(0, 0, 100, 0x00FF00, 0xff0000);
-        this.addChild(this.healthbar);
-    // let dirt : PIXI.Sprite = PIXI.Sprite.from("dirt")
-    // let dirtSprite =  dirt
-    // dirtSprite.scale.set(1)
-    // this.addChild(dirtSprite)
-    // dirtSprite.anchor.set(0.2)
-    // dirtSprite.x = this.x
-    // dirtSprite.y = this.y
+    // this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
+    // this.addChild(this.healthbar)
     }
     update(delta) {
         super.update(delta);
         this.x += this.speedX * delta;
-    // this.fall(delta)
-    // this.keepInScreen()
     }
-    // private fall(delta): void {
-    //     this.x += this.speedX * delta
-    //     this.y += this.speedY * delta
-    //     this.speedY += this.gravity
-    // }
-    // private keepInScreen() {
-    //     if (this.getBounds().left < 0) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.left
-    //     }
-    //     if (this.getBounds().right > this.game.pixi.screen.right) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.right - this.width
-    //     }
-    //     if (this.getBounds().bottom > this.game.pixi.screen.bottom) {
-    //         this.y =this.game.pixi.screen.bottom - this.height
-    //     }
-    // }
     onKeyDown(e) {
         switch(e.key.toUpperCase()){
             // case "A":
@@ -37448,6 +37625,21 @@ class Worm extends _pixiJs.AnimatedSprite {
                 break;
         }
     }
+    wormHit() {
+        this.scale.set(5);
+        this.setFrames(2);
+        this.loop = false;
+    }
+    wormIdle() {
+        this.setFrames(0);
+        this.scale.set(5);
+        this.loop = true;
+    }
+    wormDamage() {
+        this.setFrames(1);
+        this.scale.set(5);
+        this.loop = false;
+    }
     setFrames(frame) {
         if (this.previousFrame != frame) {
             console.log("set frames");
@@ -37459,7 +37651,7 @@ class Worm extends _pixiJs.AnimatedSprite {
     }
 }
 
-},{"pixi.js":"dsYej","./healthbar":"dInwI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
+},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4knq6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Question", ()=>Question
@@ -37497,9 +37689,10 @@ var _pixiJs = require("pixi.js");
 class Possibility extends _pixiJs.Sprite {
     constructor(x, y, antwoord, correct){
         // PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-        super(_pixiJs.Texture.from("textBox"));
+        super(_pixiJs.Texture.from("answerBox"));
         this.x = x;
         this.y = y;
+        // this.scale.set(6)
         this.scale.set(2);
         this.anchor.set(0.5);
         let style = new _pixiJs.TextStyle({
@@ -37517,182 +37710,6 @@ class Possibility extends _pixiJs.Sprite {
     }
 }
 
-},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jyCU7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Assets", ()=>Assets
-);
-var _pixiJs = require("pixi.js");
-var _city2Png = require("./images/City2.png");
-var _city2PngDefault = parcelHelpers.interopDefault(_city2Png);
-var _city1Png = require("./images/City1.png");
-var _city1PngDefault = parcelHelpers.interopDefault(_city1Png);
-var _croppedbutton2Png = require("./images/croppedbutton2.png");
-var _croppedbutton2PngDefault = parcelHelpers.interopDefault(_croppedbutton2Png);
-var _croppedbuttonDown2Png = require("./images/croppedbuttonDown2.png");
-var _croppedbuttonDown2PngDefault = parcelHelpers.interopDefault(_croppedbuttonDown2Png);
-var _textBoxPng = require("./images/textBox.png");
-var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
-var _swordSlashMp3 = require("url:./sounds/swordSlash.mp3");
-var _swordSlashMp3Default = parcelHelpers.interopDefault(_swordSlashMp3);
-var _dirtPng = require("./images/dirt.png");
-var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
-var _vs2Png = require("./images/vs2.png");
-var _vs2PngDefault = parcelHelpers.interopDefault(_vs2Png);
-var _heartHealthPng = require("./images/heartHealth.png");
-var _heartHealthPngDefault = parcelHelpers.interopDefault(_heartHealthPng);
-var _characterBackgrundPng = require("./images/CharacterBackgrund.png");
-var _characterBackgrundPngDefault = parcelHelpers.interopDefault(_characterBackgrundPng);
-var _startScreenBGPng = require("./images/startScreenBG.png");
-var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
-class Assets extends _pixiJs.Loader {
-    // private game: Game
-    assets = [];
-    constructor(lobby){
-        super();
-        // this.game = game
-        console.log("hi");
-        this.assets = [
-            // {name: "finn_idle", url: "finnIdle.json" },
-            // {name: "finn_run", url:"finnRun.json"},
-            // {name: "finn_damage", url: "FinnDamage.json"},
-            // {name: "finn_attack", url: "FinnAttack.json"},
-            {
-                name: "swordSlash",
-                url: _swordSlashMp3Default.default
-            },
-            {
-                name: "croppedbutton2",
-                url: _croppedbutton2PngDefault.default
-            },
-            {
-                name: "croppedbuttonDown2",
-                url: _croppedbuttonDown2PngDefault.default
-            },
-            {
-                name: "backgroundImage",
-                url: _city1PngDefault.default
-            },
-            {
-                name: "All_Moves",
-                url: "FinnCompleteSheet.json"
-            },
-            {
-                name: "city2",
-                url: _city2PngDefault.default
-            },
-            {
-                name: "worm",
-                url: "wormSpritesheet.json"
-            },
-            {
-                name: "textBox",
-                url: _textBoxPngDefault.default
-            },
-            {
-                name: "dirt",
-                url: _dirtPngDefault.default
-            },
-            {
-                name: "versus",
-                url: _vs2PngDefault.default
-            },
-            {
-                name: "heart",
-                url: _heartHealthPngDefault.default
-            },
-            {
-                name: "cBackground",
-                url: _characterBackgrundPngDefault.default
-            },
-            {
-                name: "startScreenBG",
-                url: _startScreenBGPngDefault.default
-            }, 
-        ];
-        this.assets.forEach((asset)=>{
-            this.add(asset.name, asset.url);
-        });
-        this.onError.add((arg)=>{
-            console.error(arg);
-        });
-        this.onProgress.add((loader)=>this.showProgress(loader)
-        );
-        this.load(()=>lobby.doneLoading()
-        );
-    }
-    showProgress(loader) {
-        console.log(`Loading ${loader.progress}%`);
-    }
-}
-
-},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/vs2.png":"hMgUB","./images/heartHealth.png":"9XJZL","./images/CharacterBackgrund.png":"5kZCl","./images/startScreenBG.png":"78aQ2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gJfU4":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
-"use strict";
-var bundleURL = {};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return '/';
-}
-function getBaseURL(url) {
-    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz)-extension):\/\/[^/]+/);
-    if (!matches) throw new Error('Origin not found');
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"hK38Y":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"bZPng":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"2mljC":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbuttonDown2.9737a7d5.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"EDVpg":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "textBox.8dbb072c.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"kxXbd":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "swordSlash.afed3762.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"jwJZG":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "dirt.d2ffe5eb.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"hMgUB":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "vs2.cc9f49e2.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"9XJZL":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "heartHealth.a4d01e8b.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"5kZCl":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "CharacterBackgrund.d41cdefb.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
+},{"pixi.js":"dsYej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["fCkIi","kuM8f"], "kuM8f", "parcelRequirea0e5")
 
 //# sourceMappingURL=index.83fbc3b8.js.map

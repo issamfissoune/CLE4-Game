@@ -35,18 +35,10 @@ export class Worm extends PIXI.AnimatedSprite {
 
         window.addEventListener("keyup", (e: KeyboardEvent) => this.onKeyUp(e))
         
-        this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
-        this.addChild(this.healthbar)
+        // this.healthbar = new HealthBar(0, 0, 100, 0x00FF00, 0xff0000)
+        // this.addChild(this.healthbar)
 
-        // let dirt : PIXI.Sprite = PIXI.Sprite.from("dirt")
-        // let dirtSprite =  dirt
-        // dirtSprite.scale.set(1)
-    
-        // this.addChild(dirtSprite)
-        // dirtSprite.anchor.set(0.2)
         
-        // dirtSprite.x = this.x
-        // dirtSprite.y = this.y
 
     }
 
@@ -54,29 +46,11 @@ export class Worm extends PIXI.AnimatedSprite {
         super.update(delta)
         this.x += this.speedX * delta
 
-        // this.fall(delta)
-        // this.keepInScreen()
+       
     }
 
-    // private fall(delta): void {
-    //     this.x += this.speedX * delta
-    //     this.y += this.speedY * delta
-    //     this.speedY += this.gravity
-    // }
 
-    // private keepInScreen() {
-    //     if (this.getBounds().left < 0) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.left
-    //     }
-    //     if (this.getBounds().right > this.game.pixi.screen.right) {
-    //         this.speedX *= -1
-    //         this.x = this.game.pixi.screen.right - this.width
-    //     }
-    //     if (this.getBounds().bottom > this.game.pixi.screen.bottom) {
-    //         this.y =this.game.pixi.screen.bottom - this.height
-    //     }
-    // }
+    
 
     onKeyDown(e: KeyboardEvent): any {
 
@@ -121,6 +95,26 @@ export class Worm extends PIXI.AnimatedSprite {
                 break
         }
     }
+
+    public wormHit(){
+        this.scale.set(5)
+         this.setFrames(2)
+         this.loop = false
+         
+         
+     }       
+
+     public wormIdle(){
+         this.setFrames(0)
+         this.scale.set(5)
+         this.loop= true
+     }
+
+     public wormDamage(){
+         this.setFrames(1)
+         this.scale.set(5)
+         this.loop = false
+     }
 
     private setFrames(frame: number) {
         if(this.previousFrame != frame) {

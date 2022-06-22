@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js"
 import { Application } from "pixi.js"
+import { Game } from "./game"
 
 export class Level {
 
@@ -83,7 +84,7 @@ export class Level {
                 this._pixi.stage.removeChild(this.button)
                 this._pixi.stage.removeChild(this.button)
                 this._pixi.stage.removeChild(this.button)
-                
+                new Game(this._pixi, this.loader)
             case"two":
                 
         }

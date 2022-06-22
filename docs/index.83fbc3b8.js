@@ -578,7 +578,7 @@ class Lobby {
     }
 }
 
-},{"pixi.js":"dsYej","./assets":"jyCU7","./game":"edeGs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dsYej":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./assets":"jyCU7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./game":"edeGs"}],"dsYej":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "utils", ()=>_utils
@@ -37111,22 +37111,16 @@ var _textBoxPng = require("./images/textBox.png");
 var _textBoxPngDefault = parcelHelpers.interopDefault(_textBoxPng);
 var _swordSlashMp3 = require("url:./sounds/swordSlash.mp3");
 var _swordSlashMp3Default = parcelHelpers.interopDefault(_swordSlashMp3);
-var _lakeMp3 = require("url:./sounds/Lake.mp3");
-var _lakeMp3Default = parcelHelpers.interopDefault(_lakeMp3);
-var _battlemusicMp3 = require("url:./sounds/battlemusic.mp3");
-var _battlemusicMp3Default = parcelHelpers.interopDefault(_battlemusicMp3);
 var _dirtPng = require("./images/dirt.png");
 var _dirtPngDefault = parcelHelpers.interopDefault(_dirtPng);
-var _vs3Png = require("./images/vs3.png");
-var _vs3PngDefault = parcelHelpers.interopDefault(_vs3Png);
+var _vs2Png = require("./images/vs2.png");
+var _vs2PngDefault = parcelHelpers.interopDefault(_vs2Png);
 var _heartHealthPng = require("./images/heartHealth.png");
 var _heartHealthPngDefault = parcelHelpers.interopDefault(_heartHealthPng);
 var _characterBackgrundPng = require("./images/CharacterBackgrund.png");
 var _characterBackgrundPngDefault = parcelHelpers.interopDefault(_characterBackgrundPng);
 var _startScreenBGPng = require("./images/startScreenBG.png");
 var _startScreenBGPngDefault = parcelHelpers.interopDefault(_startScreenBGPng);
-var _answerBoxPng = require("./images/answerBox.png");
-var _answerBoxPngDefault = parcelHelpers.interopDefault(_answerBoxPng);
 class Assets extends _pixiJs.Loader {
     // private game: Game
     assets = [];
@@ -37135,17 +37129,13 @@ class Assets extends _pixiJs.Loader {
         // this.game = game
         console.log("hi");
         this.assets = [
+            // {name: "finn_idle", url: "finnIdle.json" },
+            // {name: "finn_run", url:"finnRun.json"},
+            // {name: "finn_damage", url: "FinnDamage.json"},
+            // {name: "finn_attack", url: "FinnAttack.json"},
             {
                 name: "swordSlash",
                 url: _swordSlashMp3Default.default
-            },
-            {
-                name: "backgroundMusic",
-                url: _lakeMp3Default.default
-            },
-            {
-                name: "battleMusic",
-                url: _battlemusicMp3Default.default
             },
             {
                 name: "croppedbutton2",
@@ -37181,7 +37171,7 @@ class Assets extends _pixiJs.Loader {
             },
             {
                 name: "versus",
-                url: _vs3PngDefault.default
+                url: _vs2PngDefault.default
             },
             {
                 name: "heart",
@@ -37194,10 +37184,6 @@ class Assets extends _pixiJs.Loader {
             {
                 name: "startScreenBG",
                 url: _startScreenBGPngDefault.default
-            },
-            {
-                name: "answerBox",
-                url: _answerBoxPngDefault.default
             }, 
         ];
         this.assets.forEach((asset)=>{
@@ -37216,7 +37202,7 @@ class Assets extends _pixiJs.Loader {
     }
 }
 
-},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/startScreenBG.png":"78aQ2","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/heartHealth.png":"9XJZL","./images/CharacterBackgrund.png":"5kZCl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/vs3.png":"1lSqM","./images/answerBox.png":"gA0Ep","url:./sounds/Lake.mp3":"kXgZS","url:./sounds/battlemusic.mp3":"h6Bfn"}],"gJfU4":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./images/City2.png":"gJfU4","./images/City1.png":"hK38Y","./images/croppedbutton2.png":"bZPng","./images/croppedbuttonDown2.png":"2mljC","./images/textBox.png":"EDVpg","url:./sounds/swordSlash.mp3":"kxXbd","./images/dirt.png":"jwJZG","./images/heartHealth.png":"9XJZL","./images/CharacterBackgrund.png":"5kZCl","./images/startScreenBG.png":"78aQ2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./images/vs2.png":"hMgUB"}],"gJfU4":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City2.c31409ee.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -37256,9 +37242,6 @@ exports.getOrigin = getOrigin;
 },{}],"hK38Y":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "City1.e72cac9e.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
-
 },{"./helpers/bundle-url":"lgJ39"}],"bZPng":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "croppedbutton2.92544551.png" + "?" + Date.now();
 
@@ -37280,17 +37263,11 @@ module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "heartH
 },{"./helpers/bundle-url":"lgJ39"}],"5kZCl":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "CharacterBackgrund.d41cdefb.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}],"1lSqM":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "vs3.7905586e.png" + "?" + Date.now();
+},{"./helpers/bundle-url":"lgJ39"}],"78aQ2":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "startScreenBG.ba658e5c.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"lgJ39"}],"gA0Ep":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "answerBox.829fe1c1.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"kXgZS":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "Lake.20d56b52.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"h6Bfn":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "battlemusic.bf3141db.mp3" + "?" + Date.now();
+},{"./helpers/bundle-url":"lgJ39"}],"hMgUB":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('FLaer') + "vs2.cc9f49e2.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"edeGs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -37466,7 +37443,7 @@ class Game {
     }
 }
 
-},{"pixi.js":"dsYej","./FinnTheHuman":"9oUG7","./worm":"3nqFj","./question":"4knq6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./possibility":"1SWgP"}],"9oUG7":[function(require,module,exports) {
+},{"pixi.js":"dsYej","./FinnTheHuman":"9oUG7","./worm":"3nqFj","./question":"4knq6","./possibility":"1SWgP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9oUG7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "FinnTheHuman", ()=>FinnTheHuman
